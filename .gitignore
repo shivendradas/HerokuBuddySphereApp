@@ -1,0 +1,42 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+
+# React
+/build
+/dist
+*.log
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+
+# Heroku
+*.orig
+.heroku/
+
+# Optional: Production build (if frontend is in a separate folder)
+client/node_modules/
+client/build/
+
+# Optional: If using logs or uploads
+logs/
+*.log
+uploads/
+
+# Optional: If using coverage tools
+coverage/
+*.lcov
+
+# Optional: PM2 process files
+pids/
+*.pid
+*.seed
+*.pid.lock
