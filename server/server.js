@@ -2,6 +2,8 @@
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
+const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
 const app = express();
@@ -22,7 +24,6 @@ app.use(express.json());
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false } // Required for Render
-  //ssl: false
 });
 
 // Create Table if not exists
@@ -38,7 +39,7 @@ pool.query(`
   );
 `);
 
-// Add Request
+// ➕ Add Request API
 app.post('/api/addRequest', async (req, res) => {
   const { from, to, dateTime, name, mobile, email } = req.body;
   try {
@@ -48,12 +49,12 @@ app.post('/api/addRequest', async (req, res) => {
     );
     res.status(200).json({ message: 'Request added successfully' });
   } catch (err) {
-    console.error(err);
+    console.error('Error inserting request:', err);
     res.status(500).json({ error: 'Failed to add request' });
   }
 });
 
-// Find Buddy
+// 🔍 Find Buddy API
 app.get('/api/findBuddy', async (req, res) => {
   const { from, to, date } = req.query;
   try {
@@ -65,22 +66,32 @@ app.get('/api/findBuddy', async (req, res) => {
     const result = await pool.query(query, [from, to, date]);
     res.json(result.rows);
   } catch (err) {
-    console.error(err);
+    console.error('Error fetching buddy data:', err);
     res.status(500).json({ error: 'Failed to fetch buddy data' });
   }
 });
 
-// Serve React static files in production
-const path = require("path");
-
+// 🌐 Serve React static files in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../client/build")));
+  const buildPath = path.join(__dirname, "../client/build");
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-  });
+  if (fs.existsSync(buildPath)) {
+    app.use(express.static(buildPath));
+
+    app.get("*", (req, res) => {
+      const indexPath = path.join(buildPath, "index.html");
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.status(500).send("Build index.html not found");
+      }
+    });
+  } else {
+    console.warn("⚠️ Build folder not found. React app won't be served.");
+  }
 }
 
+// ✅ Start server
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`🚀 Server running on port ${port}`);
 });
