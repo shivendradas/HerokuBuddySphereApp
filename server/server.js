@@ -21,8 +21,8 @@ app.use(express.json());
 }); */
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  //ssl: { rejectUnauthorized: false } // Required for Render
-  ssl: false
+  ssl: { rejectUnauthorized: false } // Required for Render
+  //ssl: false
 });
 
 // Create Table if not exists
