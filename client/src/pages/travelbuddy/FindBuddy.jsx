@@ -47,7 +47,7 @@ const FindBuddy = () => {
               <td className="border p-2">{r.name}</td>
               <td className="border p-2">{r.mobile}</td>
               <td className="border p-2">{r.email}</td>
-              <td className="border p-2">{new Date(r.dateTime).toLocaleString()}</td>
+              <td className="border p-2">{new Date(r.date_time).toLocaleString()}</td>
             </tr>
           ))}
         </tbody>

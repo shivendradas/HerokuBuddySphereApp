@@ -3,8 +3,8 @@ import './Footer.css'; // Optional: add styles in Footer.css
 
 const Footer = () => {
   return (
-    <footer className="footer">
-      <p>© {new Date().getFullYear()} FindTravelBuddy. All rights reserved.</p>
+    <footer className="bg-gray-800 text-white text-center py-4">
+      <p>© {new Date().getFullYear()} BuddySphere. All rights reserved.</p>
     </footer>
   );
 };
