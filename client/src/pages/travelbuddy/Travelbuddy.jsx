@@ -28,9 +28,9 @@ const Travelbuddy = () => {
                     <FindBuddy/>
                 </TabPanel>
             </TabView>
-            <div className="active-tab-info">
+            {/* <div className="active-tab-info">
                 <p>Active Tab: {activeIndex === 0 ? 'Add Buddy' : 'Find Buddy'}</p>
-            </div>
+            </div> */}
         </div>
     );
 };

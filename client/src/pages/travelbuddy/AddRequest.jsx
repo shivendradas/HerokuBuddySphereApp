@@ -11,7 +11,9 @@ const AddRequest = () => {
     dateTime: '',
     name: '',
     mobile: '',
-    email: ''
+    email: '',
+    userType: '',
+    description: '' // NEW: description field
   });
 
   const handleChange = e => {
@@ -30,18 +32,39 @@ const AddRequest = () => {
         <option value="">From City</option>
         {cities.map(city => <option key={city}>{city}</option>)}
       </select>
+
       <select name="to" onChange={handleChange} className="w-full p-2 border">
         <option value="">To City</option>
         {cities.map(city => <option key={city}>{city}</option>)}
       </select>
+
       <input type="datetime-local" name="dateTime" onChange={handleChange} className="w-full p-2 border" />
+
       <input type="text" name="name" placeholder="Name" onChange={handleChange} className="w-full p-2 border" />
+
       <input type="text" name="mobile" placeholder="Mobile Number" onChange={handleChange} className="w-full p-2 border" />
+
       <input type="email" name="email" placeholder="Email ID" onChange={handleChange} className="w-full p-2 border" />
+
+      <select name="userType" onChange={handleChange} className="w-full p-2 border">
+        <option value="">Select User Type</option>
+        <option value="passenger">Passenger (Looking for a cab)</option>
+        <option value="driver">Driver (Have a cab)</option>
+      </select>
+
+      {/* NEW: Description Textarea */}
+      <textarea
+        name="description"
+        placeholder="Short description (max 100 characters)"
+        maxLength={100}
+        rows={3}
+        onChange={handleChange}
+        className="w-full p-2 border resize-none"
+      ></textarea>
+
       <button className="bg-blue-500 text-white p-2 w-full">Submit</button>
     </form>
   );
 };
 
 export default AddRequest;
-

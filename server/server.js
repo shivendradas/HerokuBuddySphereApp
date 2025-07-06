@@ -1,4 +1,3 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
@@ -35,17 +34,21 @@ pool.query(`
     date_time TIMESTAMP,
     name VARCHAR(100),
     mobile VARCHAR(20),
-    email VARCHAR(100)
+    email VARCHAR(100),
+    user_type VARCHAR(20),
+    description VARCHAR(100)
   );
 `);
 
-// ➕ Add Request API
+// ➕ Add Request API (with userType & description)
 app.post('/api/addRequest', async (req, res) => {
-  const { from, to, dateTime, name, mobile, email } = req.body;
+  const { from, to, dateTime, name, mobile, email, userType, description } = req.body;
   try {
     await pool.query(
-      'INSERT INTO travel_requests (from_city, to_city, date_time, name, mobile, email) VALUES ($1, $2, $3, $4, $5, $6)',
-      [from, to, dateTime, name, mobile, email]
+      `INSERT INTO travel_requests 
+       (from_city, to_city, date_time, name, mobile, email, user_type, description) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+      [from, to, dateTime, name, mobile, email, userType, description]
     );
     res.status(200).json({ message: 'Request added successfully' });
   } catch (err) {
@@ -54,22 +57,33 @@ app.post('/api/addRequest', async (req, res) => {
   }
 });
 
-// 🔍 Find Buddy API
+// 🔍 Find Buddy API (returns new fields too)
 app.get('/api/findBuddy', async (req, res) => {
-  const { from, to, date } = req.query;
+  const { from, to, fromDate, toDate, userType } = req.query;
+
   try {
-    const query = `
+    let query = `
       SELECT * FROM travel_requests
-      WHERE from_city = $1 AND to_city = $2 AND DATE(date_time) = $3
-      ORDER BY date_time ASC;
+      WHERE from_city = $1 AND to_city = $2
+      AND date_time BETWEEN $3 AND $4
     `;
-    const result = await pool.query(query, [from, to, date]);
+    let params = [from, to, fromDate, toDate];
+
+    if (userType) {
+      query += ` AND user_type = $5`;
+      params.push(userType);
+    }
+
+    query += ` ORDER BY date_time ASC`;
+
+    const result = await pool.query(query, params);
     res.json(result.rows);
   } catch (err) {
     console.error('Error fetching buddy data:', err);
     res.status(500).json({ error: 'Failed to fetch buddy data' });
   }
 });
+
 
 // 🌐 Serve React static files in production
 if (process.env.NODE_ENV === "production") {
