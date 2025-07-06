@@ -6,6 +6,7 @@ import 'primeicons/primeicons.css';
 import './Travelbuddy.css'; // Import custom CSS
 import AddRequest from './AddRequest';
 import FindBuddy from './FindBuddy';
+import TrabelBuddyDescription from './TravelBuddyDescription';
 
 const Travelbuddy = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -21,7 +22,10 @@ const Travelbuddy = () => {
                 activeIndex={activeIndex} 
                 onTabChange={handleTabChange}
             >
-                <TabPanel header="Add">
+                <TabPanel header="Description">
+                    <TrabelBuddyDescription />
+                </TabPanel>
+                <TabPanel header="Add New Request">
                     <AddRequest/>
                 </TabPanel>
                 <TabPanel header="Find Buddy">

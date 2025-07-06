@@ -36,3 +36,10 @@
     margin-bottom: 0;
     border: none;
 }
+.travelbuddy-scroll-container {
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #f9fafb;
+    padding: 1rem;
+  }
+  
