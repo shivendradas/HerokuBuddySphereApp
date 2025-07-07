@@ -1,14 +1,8 @@
 // pages/AddRequest.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
+import stateCityData from '../../data/stateCityData.json'; // Adjust the path as needed
 
-const stateCityData = {
-  "Delhi": ["New Delhi", "Dwarka", "Saket", "Other"],
-  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Other"],
-  "Karnataka": ["Bangalore", "Mysore", "Mangalore", "Other"],
-  "West Bengal": ["Kolkata", "Howrah", "Durgapur", "Other"],
-  "Other": ["Other"]
-};
 
 const AddRequest = () => {
   const [formData, setFormData] = useState({
