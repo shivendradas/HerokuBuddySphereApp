@@ -19,7 +19,8 @@ const FindBuddy = () => {
   };
 
   const handleSearch = async () => {
-    const res = await axios.get('http://localhost:5000/api/findBuddy', { params: criteria });
+    const apiBaseUrl = process.env.REACT_APP_API_URL;
+    const res = await axios.get(`${apiBaseUrl}/api/findBuddy`, { params: criteria });
     setResults(res.data);
   };
 

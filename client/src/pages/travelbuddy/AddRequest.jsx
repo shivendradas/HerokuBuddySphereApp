@@ -22,7 +22,9 @@ const AddRequest = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await axios.post('http://localhost:5000/api/addRequest', formData);
+    const apiBaseUrl = process.env.REACT_APP_API_URL;
+    await axios.post(`${apiBaseUrl}/api/addRequest`, formData);
+
     alert('Request submitted successfully');
   };
 
