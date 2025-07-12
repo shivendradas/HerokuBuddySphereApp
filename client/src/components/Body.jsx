@@ -16,39 +16,49 @@ const MainBody = () => {
     const location = useLocation();
 
     const getActiveClass = (path) =>
-        location.pathname === path ? 'bg-blue-100 font-bold rounded-md' : '';
+        location.pathname === path
+            ? 'bg-blue-100 text-blue-700 font-semibold rounded-lg'
+            : '';
 
     const menuItems = [
+        {
+            label: 'Home',
+            icon: 'pi pi-home',
+            command: () => navigate('/'),
+            className: getActiveClass('/'),
+        },
         {
             label: 'Find Travel Buddy',
             icon: 'pi pi-users',
             command: () => navigate('/travelbuddy'),
-            className: getActiveClass('/travelbuddy')
+            className: getActiveClass('/travelbuddy'),
         },
         {
             label: 'Match Making',
             icon: 'pi pi-heart',
             command: () => navigate('/matchmaking'),
-            className: getActiveClass('/matchmaking')
+            className: getActiveClass('/matchmaking'),
         },
         {
             label: 'Find Jobs',
             icon: 'pi pi-briefcase',
             command: () => navigate('/findjobs'),
-            className: getActiveClass('/findjobs')
-        }
+            className: getActiveClass('/findjobs'),
+        },
     ];
 
     return (
-        <div className="flex-grow bg-white overflow-hidden">
-            <div className="flex h-full mt-5">
-                {/* Left panel - 20% */}
-                <div className="w-1/5 border border-gray-300 p-4">
+        <div className="flex-grow bg-gradient-to-tr from-[#f0f8ff] via-[#d6eaff] to-[#f7fbff] min-h-[calc(100vh-80px)] p-4">
+
+            <div className="flex h-full gap-6">
+                {/* Left panel */}
+                <div className="w-1/5 bg-white shadow-md rounded-xl p-4 border border-gray-200">
+                    <h2 className="text-xl font-semibold text-blue-800 mb-4">Navigation</h2>
                     <PanelMenu model={menuItems} className="w-full" />
                 </div>
 
-                {/* Right panel - 80% */}
-                <div className="w-4/5 border border-gray-300 p-4 overflow-auto max-h-full ml-4">
+                {/* Right panel */}
+                <div className="w-4/5 bg-white shadow-md rounded-xl p-6 border border-gray-200 overflow-auto max-h-[calc(100vh-120px)]">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/travelbuddy" element={<TravelBuddy />} />
