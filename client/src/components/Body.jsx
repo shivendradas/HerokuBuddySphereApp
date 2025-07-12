@@ -23,29 +23,30 @@ const MainBody = () => {
     const menuItems = [
         {
             label: 'Home',
-            icon: 'pi pi-home',
+            icon: location.pathname === '/' ? 'pi pi-home text-blue-700' : 'pi pi-home',
             command: () => navigate('/'),
             className: getActiveClass('/'),
         },
         {
             label: 'Find Travel Buddy',
-            icon: 'pi pi-users',
+            icon: location.pathname === '/travelbuddy' ? 'pi pi-users text-blue-700' : 'pi pi-users',
             command: () => navigate('/travelbuddy'),
             className: getActiveClass('/travelbuddy'),
         },
         {
             label: 'Match Making',
-            icon: 'pi pi-heart',
+            icon: location.pathname === '/matchmaking' ? 'pi pi-heart-fill text-pink-500' : 'pi pi-heart',
             command: () => navigate('/matchmaking'),
             className: getActiveClass('/matchmaking'),
         },
         {
             label: 'Find Jobs',
-            icon: 'pi pi-briefcase',
+            icon: location.pathname === '/findjobs' ? 'pi pi-briefcase text-green-600' : 'pi pi-briefcase',
             command: () => navigate('/findjobs'),
             className: getActiveClass('/findjobs'),
         },
     ];
+
 
     return (
         <div className="flex-grow bg-gradient-to-tr from-[#f0f8ff] via-[#d6eaff] to-[#f7fbff] min-h-[calc(100vh-80px)] p-4">
