@@ -12,6 +12,13 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Allow your frontend origin
+app.use(cors({
+  origin: 'https://buddysphere-1lbl.onrender.com', // <-- frontend domain
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true, // only if you're using cookies or authentication
+}));
+
 // PostgreSQL Connection
 /* const pool = new Pool({
   user: process.env.DB_USER,
