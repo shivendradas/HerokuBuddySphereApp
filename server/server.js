@@ -62,21 +62,39 @@ app.get('/api/findBuddy', async (req, res) => {
   const { from, to, fromDate, toDate, userType } = req.query;
 
   try {
-    let query = `
-      SELECT * FROM travel_requests
-      WHERE from_city = $1 AND to_city = $2
-      AND date_time BETWEEN $3 AND $4
-    `;
-    let params = [from, to, fromDate, toDate];
+    let conditions = [];
+    let values = [];
+    let idx = 1;
 
+    if (from) {
+      conditions.push(`from_city = $${idx++}`);
+      values.push(from);
+    }
+    if (to) {
+      conditions.push(`to_city = $${idx++}`);
+      values.push(to);
+    }
+    if (fromDate) {
+      conditions.push(`date_time >= $${idx++}`);
+      values.push(fromDate);
+    }
+    if (toDate) {
+      conditions.push(`date_time <= $${idx++}`);
+      values.push(toDate);
+    }
     if (userType) {
-      query += ` AND user_type = $5`;
-      params.push(userType);
+      conditions.push(`user_type = $${idx++}`);
+      values.push(userType);
+    }
+
+    let query = `SELECT * FROM travel_requests`;
+    if (conditions.length > 0) {
+      query += ` WHERE ` + conditions.join(' AND ');
     }
 
     query += ` ORDER BY date_time ASC`;
 
-    const result = await pool.query(query, params);
+    const result = await pool.query(query, values);
     res.json(result.rows);
   } catch (err) {
     console.error('Error fetching buddy data:', err);

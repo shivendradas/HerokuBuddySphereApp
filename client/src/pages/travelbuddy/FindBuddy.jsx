@@ -30,22 +30,33 @@ const FindBuddy = () => {
     const actualFromCity = criteria.fromCity === 'Other' ? customFromCity : criteria.fromCity;
     const actualToState = criteria.toState === 'Other' ? customToState : criteria.toState;
     const actualToCity = criteria.toCity === 'Other' ? customToCity : criteria.toCity;
-
-    const payload = {
-      ...criteria,
-      from: `${actualFromState}+${actualFromCity}`,
-      to: `${actualToState}+${actualToCity}`
+  
+    // Create the full payload
+    let payload = {
+      from: actualFromState && actualFromCity ? `${actualFromState}+${actualFromCity}` : '',
+      to: actualToState && actualToCity ? `${actualToState}+${actualToCity}` : '',
+      fromDate: criteria.fromDate,
+      toDate: criteria.toDate,
+      userType: criteria.userType
     };
-
-    delete payload.fromState;
-    delete payload.fromCity;
-    delete payload.toState;
-    delete payload.toCity;
-
-    const apiBaseUrl = process.env.REACT_APP_API_URL;
-    const res = await axios.get(`${apiBaseUrl}/api/findBuddy`, { params: payload });
-    setResults(res.data);
+  
+    // Remove empty fields so only filled ones are sent
+    Object.keys(payload).forEach(key => {
+      if (!payload[key]) {
+        delete payload[key];
+      }
+    });
+  
+    try {
+      const apiBaseUrl = process.env.REACT_APP_API_URL;
+      const res = await axios.get(`${apiBaseUrl}/api/findBuddy`, { params: payload });
+      setResults(res.data);
+    } catch (error) {
+      console.error("Search failed:", error);
+      alert("Error fetching results. Please try again.");
+    }
   };
+  
 
   return (
     <div className="max-w-4xl mx-auto">
