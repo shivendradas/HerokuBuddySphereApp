@@ -5,6 +5,7 @@ import { PanelMenu } from 'primereact/panelmenu';
 import TravelBuddy from '../pages/travelbuddy/Travelbuddy';
 import MatchMaking from '../pages/matchmaking/MatchMaking';
 import FindJobs from '../pages/jobs/FindJobs';
+import Home from '../pages/Home';
 
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -49,6 +50,7 @@ const MainBody = () => {
                 {/* Right panel - 80% */}
                 <div className="w-4/5 border border-gray-300 p-4 overflow-auto max-h-full ml-4">
                     <Routes>
+                        <Route path="/" element={<Home />} />
                         <Route path="/travelbuddy" element={<TravelBuddy />} />
                         <Route path="/matchmaking" element={<MatchMaking />} />
                         <Route path="/findjobs" element={<FindJobs />} />
