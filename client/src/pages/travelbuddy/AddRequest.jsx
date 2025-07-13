@@ -1,8 +1,7 @@
 // pages/AddRequest.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-import stateCityData from '../../data/stateCityData.json'; // Adjust the path as needed
-
+import stateCityData from '../../data/stateCityData.json';
 
 const AddRequest = () => {
   const [formData, setFormData] = useState({
@@ -42,113 +41,140 @@ const AddRequest = () => {
       to: `${actualToState}+${actualToCity}`,
     };
 
-    // Optional: remove separate state and city fields if not needed in backend
     delete submissionData.fromState;
     delete submissionData.fromCity;
     delete submissionData.toState;
     delete submissionData.toCity;
+
     const apiBaseUrl = process.env.REACT_APP_API_URL;
     await axios.post(`${apiBaseUrl}/api/addRequest`, submissionData);
 
-    alert('Request submitted successfully');
+    alert('🎉 Request submitted successfully!');
   };
 
+  const renderSelectOrCustomInput = (label, name, options, value, onChange, customValue, setCustomValue) => (
+    <>
+      <label className="block text-sm font-medium text-gray-700">{label}</label>
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+      >
+        <option value="">Select {label}</option>
+        {options.map(option => (
+          <option key={option} value={option}>{option}</option>
+        ))}
+        <option value="Other">Other</option>
+      </select>
+      {value === 'Other' && (
+        <input
+          type="text"
+          placeholder={`Enter custom ${label}`}
+          className="mt-2 w-full px-3 py-2 border rounded-md shadow-sm"
+          value={customValue}
+          onChange={e => setCustomValue(e.target.value)}
+        />
+      )}
+    </>
+  );
+
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-4">
+    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+      <h2 className="text-2xl font-semibold text-center mb-6 text-blue-700">Add Travel Request</h2>
+      <form onSubmit={handleSubmit} className="space-y-5">
 
-      {/* From State */}
-      <select name="fromState" onChange={handleChange} className="w-full p-2 border">
-        <option value="">From State</option>
-        {Object.keys(stateCityData).map(state => (
-          <option key={state} value={state}>{state}</option>
-        ))}
-      </select>
-      {formData.fromState === 'Other' && (
-        <input
-          type="text"
-          placeholder="Enter custom From State"
-          className="w-full p-2 border"
-          value={customFromState}
-          onChange={e => setCustomFromState(e.target.value)}
-        />
-      )}
+        {renderSelectOrCustomInput('From State', 'fromState', Object.keys(stateCityData), formData.fromState, handleChange, customFromState, setCustomFromState)}
 
-      {/* From City */}
-      <select name="fromCity" onChange={handleChange} className="w-full p-2 border">
-        <option value="">From City</option>
-        {(stateCityData[formData.fromState] || []).map(city => (
-          <option key={city} value={city}>{city}</option>
-        ))}
-      </select>
-      {formData.fromCity === 'Other' && (
-        <input
-          type="text"
-          placeholder="Enter custom From City"
-          className="w-full p-2 border"
-          value={customFromCity}
-          onChange={e => setCustomFromCity(e.target.value)}
-        />
-      )}
+        {renderSelectOrCustomInput('From City', 'fromCity', stateCityData[formData.fromState] || [], formData.fromCity, handleChange, customFromCity, setCustomFromCity)}
 
-      {/* To State */}
-      <select name="toState" onChange={handleChange} className="w-full p-2 border">
-        <option value="">To State</option>
-        {Object.keys(stateCityData).map(state => (
-          <option key={state} value={state}>{state}</option>
-        ))}
-      </select>
-      {formData.toState === 'Other' && (
-        <input
-          type="text"
-          placeholder="Enter custom To State"
-          className="w-full p-2 border"
-          value={customToState}
-          onChange={e => setCustomToState(e.target.value)}
-        />
-      )}
+        {renderSelectOrCustomInput('To State', 'toState', Object.keys(stateCityData), formData.toState, handleChange, customToState, setCustomToState)}
 
-      {/* To City */}
-      <select name="toCity" onChange={handleChange} className="w-full p-2 border">
-        <option value="">To City</option>
-        {(stateCityData[formData.toState] || []).map(city => (
-          <option key={city} value={city}>{city}</option>
-        ))}
-      </select>
-      {formData.toCity === 'Other' && (
-        <input
-          type="text"
-          placeholder="Enter custom To City"
-          className="w-full p-2 border"
-          value={customToCity}
-          onChange={e => setCustomToCity(e.target.value)}
-        />
-      )}
+        {renderSelectOrCustomInput('To City', 'toCity', stateCityData[formData.toState] || [], formData.toCity, handleChange, customToCity, setCustomToCity)}
 
-      <input type="datetime-local" name="dateTime" onChange={handleChange} className="w-full p-2 border" />
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Travel Date & Time</label>
+          <input
+            type="datetime-local"
+            name="dateTime"
+            value={formData.dateTime}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-md shadow-sm"
+          />
+        </div>
 
-      <input type="text" name="name" placeholder="Name" onChange={handleChange} className="w-full p-2 border" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-md shadow-sm"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
+            <input
+              type="text"
+              name="mobile"
+              placeholder="10-digit mobile"
+              value={formData.mobile}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-md shadow-sm"
+            />
+          </div>
+        </div>
 
-      <input type="text" name="mobile" placeholder="Mobile Number" onChange={handleChange} className="w-full p-2 border" />
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Email ID</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-md shadow-sm"
+          />
+        </div>
 
-      <input type="email" name="email" placeholder="Email ID" onChange={handleChange} className="w-full p-2 border" />
+        <div>
+          <label className="block text-sm font-medium text-gray-700">User Type</label>
+          <select
+            name="userType"
+            value={formData.userType}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-md shadow-sm"
+          >
+            <option value="">Select User Type</option>
+            <option value="passenger">Passenger (Looking for a cab)</option>
+            <option value="driver">Driver (Have a cab)</option>
+          </select>
+        </div>
 
-      <select name="userType" onChange={handleChange} className="w-full p-2 border">
-        <option value="">Select User Type</option>
-        <option value="passenger">Passenger (Looking for a cab)</option>
-        <option value="driver">Driver (Have a cab)</option>
-      </select>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Short Description</label>
+          <textarea
+            name="description"
+            placeholder="Any additional info (max 100 characters)"
+            maxLength={100}
+            rows={3}
+            value={formData.description}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-md shadow-sm resize-none"
+          ></textarea>
+        </div>
 
-      <textarea
-        name="description"
-        placeholder="Short description (max 100 characters)"
-        maxLength={100}
-        rows={3}
-        onChange={handleChange}
-        className="w-full p-2 border resize-none"
-      ></textarea>
-
-      <button className="bg-blue-500 text-white p-2 w-full">Submit</button>
-    </form>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
+        >
+          Submit Request
+        </button>
+      </form>
+    </div>
   );
 };
 
