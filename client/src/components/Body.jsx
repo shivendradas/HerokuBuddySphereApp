@@ -49,8 +49,7 @@ const MainBody = () => {
 
 
     return (
-        <div className="flex-grow bg-gradient-to-tr from-[#f0f8ff] via-[#d6eaff] to-[#f7fbff] min-h-[calc(100vh-80px)] p-4">
-
+        <div className="flex-grow bg-gradient-to-tr from-[#f0f8ff] via-[#d6eaff] to-[#f7fbff] p-4">
             <div className="flex h-full gap-6">
                 {/* Left panel */}
                 <div className="w-1/5 bg-white shadow-md rounded-xl p-4 border border-gray-200">
@@ -59,7 +58,7 @@ const MainBody = () => {
                 </div>
 
                 {/* Right panel */}
-                <div className="w-4/5 bg-white shadow-md rounded-xl p-6 border border-gray-200 overflow-auto max-h-[calc(100vh-120px)]">
+                <div className="w-4/5 bg-white shadow-md rounded-xl p-6 border border-gray-200 overflow-auto max-h-[calc(100vh-19vh)]">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/travelbuddy" element={<TravelBuddy />} />
