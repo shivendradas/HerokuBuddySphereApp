@@ -6,8 +6,25 @@ import './Travelbuddy.css'; // Add scroll style here
 
 const TrabelBuddyDescription = () => {
   return (
-    <div className="travelbuddy-scroll-container">
-      <section className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded">
+    <div
+      className="travelbuddy-scroll-container"
+      style={{
+        backgroundImage: 'url(/travelbuddy.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh',
+        width: '100%',
+        position: 'relative'
+      }}
+    >
+      <section
+        className="max-w-4xl mx-auto p-6 shadow-md rounded"
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          background: 'rgba(255,255,255,0.4)' // Transparent background
+        }}
+      >
         <h1 className="text-2xl font-semibold mb-4">Travel Buddy - How It Works</h1>
 
         <p className="mb-4">
@@ -36,7 +53,7 @@ const TrabelBuddyDescription = () => {
           Use the search filters to narrow down results based on your preferences. Select a date range, origin and destination cities, and the user type you're interested in (Driver or Passenger) to find the most relevant matches for your journey.
         </p>
 
-        <div className="p-4 mb-4 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-800 rounded">
+        <div className="p-4 mb-4 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-800 rounded" style={{background: 'rgba(255,255,204,0.5)'}}>
           <strong>Disclaimer:</strong> Travel Buddy only facilitates the connection between drivers and passengers. It is solely your responsibility to verify the authenticity and reliability of the individuals you choose to connect with. We do not guarantee the legitimacy or safety of any listed driver or passenger. Always perform your own checks and exercise caution before proceeding with any ride.
         </div>
 
@@ -44,6 +61,18 @@ const TrabelBuddyDescription = () => {
           Start your journey smarter with Travel Buddy – where travel meets connection.
         </p>
       </section>
+      {/* Optional: Add a semi-transparent overlay for better text readability */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'rgba(255,255,255,0.5)',
+          zIndex: 1
+        }}
+      />
     </div>
   );
 };
