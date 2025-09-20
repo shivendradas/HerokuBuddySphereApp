@@ -6,6 +6,7 @@ import 'primeicons/primeicons.css';
 import '../travelbuddy/Travelbuddy'; // Import custom CSS
 import PropertiesDescription from './PropertiesDescription';
 import AddRequest from './AddRequest';
+import SearchProperties from './SearchProperties';
 
 const Properties = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -26,6 +27,9 @@ const Properties = () => {
                 </TabPanel>
                 <TabPanel header="Add Property Aid">
                     <AddRequest />
+                </TabPanel>
+                <TabPanel header="Search Properties">
+                    <SearchProperties />
                 </TabPanel>
             </TabView>}
         </div>
