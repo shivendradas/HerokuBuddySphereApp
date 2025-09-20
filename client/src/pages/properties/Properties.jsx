@@ -5,6 +5,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import '../travelbuddy/Travelbuddy'; // Import custom CSS
 import PropertiesDescription from './PropertiesDescription';
+import AddRequest from './AddRequest';
 
 const Properties = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -22,6 +23,9 @@ const Properties = () => {
             >
                 <TabPanel header="Description">
                     <PropertiesDescription />
+                </TabPanel>
+                <TabPanel header="Add Property Aid">
+                    <AddRequest />
                 </TabPanel>
             </TabView>}
         </div>
