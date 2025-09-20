@@ -10,6 +10,7 @@ import Home from '../pages/Home';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import Properties from '../pages/properties/Properties';
 
 const MainBody = () => {
     const navigate = useNavigate();
@@ -32,6 +33,12 @@ const MainBody = () => {
             icon: location.pathname === '/travelbuddy' ? 'pi pi-users text-blue-700' : 'pi pi-users',
             command: () => navigate('/travelbuddy'),
             className: getActiveClass('/travelbuddy'),
+        },
+        {
+            label: 'Properties',
+            icon: location.pathname === '/properties' ? 'pi pi-building text-purple-600' : 'pi pi-building',
+            command: () => navigate('/properties'),
+            className: getActiveClass('/properties'),
         },
         {
             label: 'Match Making',
@@ -62,6 +69,7 @@ const MainBody = () => {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/travelbuddy" element={<TravelBuddy />} />
+                        <Route path="/properties" element={<Properties />} />
                         <Route path="/matchmaking" element={<MatchMaking />} />
                         <Route path="/findjobs" element={<FindJobs />} />
                     </Routes>
