@@ -1,0 +1,45 @@
+/* Highlight active tab */
+.custom-tabview .p-tabview-nav li.p-highlight {
+    background-color: #2563eb;          /* Blue background */
+    color: #2a03f0;                     /* Light yellow text */
+    border: 2px solid #2563eb;          /* Blue border */
+    border-bottom: none;               /* Seamless with content panel */
+    border-radius: 8px 8px 0 0;
+    font-weight: bold;
+}
+
+/* Inactive tabs */
+.custom-tabview .p-tabview-nav li {
+    background-color: #f3f4f6;          /* Tailwind's gray-100 */
+    color: #1f2937;                     /* Tailwind's gray-800 */
+    border: 1px solid #cbd5e1;          /* Light gray border */
+    border-radius: 8px 8px 0 0;
+    margin-right: 4px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+}
+
+/* Hover effect for tabs */
+.custom-tabview .p-tabview-nav li:hover {
+    background-color: #e5e7eb;          /* Slightly darker gray */
+}
+
+/* Tab panel content border */
+.custom-tabview .p-tabview-panels {
+    border: 2px solid #2563eb;
+    border-radius: 0 0 8px 8px;
+    padding: 1rem;
+}
+
+/* Optional: spacing for nav bar */
+.custom-tabview .p-tabview-nav {
+    margin-bottom: 0;
+    border: none;
+}
+.travelbuddy-scroll-container {
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #f9fafb;
+    padding: 1rem;
+  }
+  
