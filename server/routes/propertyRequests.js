@@ -9,7 +9,7 @@ module.exports = (pool) => {
     CREATE TABLE IF NOT EXISTS property_requests (
       id SERIAL PRIMARY KEY,
       property_type VARCHAR(50),
-      title VARCHAR(255),
+      transaction_type VARCHAR(25),
       description TEXT,
       location VARCHAR(255),
       price NUMERIC,
@@ -25,11 +25,10 @@ module.exports = (pool) => {
 
   // Add Property Request
   router.post('/properties/addPropertyRequest', async (req, res) => {
-    console.log('Received property request:', req.body);
 
     const {
       propertyType,
-      title,
+      transactionType,
       description,
       location,
       price,
@@ -49,9 +48,9 @@ module.exports = (pool) => {
 
       await pool.query(
         `INSERT INTO property_requests 
-         (property_type, title, description, location, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images)
+         (property_type, transaction_type, description, location, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images)
          VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
-        [propertyType, title, description, location, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer]
+        [propertyType, transactionType, description, location, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer]
       );
       res.status(200).json({ message: 'Property request added successfully' });
     } catch (err) {
@@ -61,10 +60,11 @@ module.exports = (pool) => {
   });
 
   // Fetch property requests with optional filters
-  router.get('/propertiesgetPropertyRequests', async (req, res) => {
+  router.get('/properties/search', async (req, res) => {
     try {
       const {
         propertyType,
+        transactionType,
         location,
         minPrice,
         maxPrice,
@@ -79,6 +79,10 @@ module.exports = (pool) => {
       if (propertyType) {
         conditions.push(`property_type = $${idx++}`);
         values.push(propertyType);
+      }
+      if (transactionType) {
+        conditions.push(`transaction_type = $${idx++}`);
+        values.push(transactionType);
       }
       if (location) {
         conditions.push(`location ILIKE $${idx++}`);
