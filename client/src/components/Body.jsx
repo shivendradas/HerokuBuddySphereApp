@@ -11,6 +11,8 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import Properties from '../pages/properties/Properties';
+import Login from '../pages/login/Login';
+import RegisterUser from '../pages/login/RegisterUser';
 
 const MainBody = () => {
     const navigate = useNavigate();
@@ -68,6 +70,8 @@ const MainBody = () => {
                 <div className="w-4/5 bg-white shadow-md rounded-xl p-6 border border-gray-200 overflow-auto max-h-[calc(100vh-19vh)]">
                     <Routes>
                         <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/registeruser" element={<RegisterUser />} />
                         <Route path="/travelbuddy" element={<TravelBuddy />} />
                         <Route path="/properties" element={<Properties />} />
                         <Route path="/matchmaking" element={<MatchMaking />} />
