@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const [showLogin, setShowLogin] = useState(false);
+  const [loggedInEmail, setLoggedInEmail] = useState(localStorage.getItem('email') || '');
   const navigate = useNavigate();
 
-  const toggleLogin = () => {
-    navigate('/login');
-  };
+  useEffect(() => {
+    const onStorageChange = () => {
+      setLoggedInEmail(localStorage.getItem('email') || '');
+    };
+    window.addEventListener('storage', onStorageChange);
 
-  const closeLogin = () => {
-    setShowLogin(false);
+    return () => {
+      window.removeEventListener('storage', onStorageChange);
+    };
+  }, []);
+
+  const toggleLogin = () => {
+    if (!loggedInEmail) {
+      navigate('/login');
+    } else {
+      // maybe logout logic here
+      localStorage.removeItem('token');
+      localStorage.removeItem('email');
+      setLoggedInEmail('');
+    }
   };
 
   return (
@@ -43,20 +57,27 @@ const Header = () => {
         <h1 style={{ fontSize: '1.8rem', margin: 0 }}>BuddySphere</h1>
       </div>
 
-      <button
-        onClick={toggleLogin}
-        style={{
-          backgroundColor: '#2563EB',
-          color: 'white',
-          border: 'none',
-          padding: '10px 20px',
-          borderRadius: '5px',
-          cursor: 'pointer',
-          fontSize: '1rem',
-        }}
-      >
-        Login
-      </button>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {loggedInEmail && (
+          <span style={{ marginRight: '20px', fontSize: '1rem', color: 'white' }}>
+            Logged In {loggedInEmail}
+          </span>
+        )}
+        <button
+          onClick={toggleLogin}
+          style={{
+            backgroundColor: '#2563EB',
+            color: 'white',
+            border: 'none',
+            padding: '10px 20px',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            fontSize: '1rem',
+          }}
+        >
+          {loggedInEmail ? 'Logout' : 'Login'}
+        </button>
+      </div>
     </header>
   );
 };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';  // Use a blue-ish theme, can adjust as needed
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';                              // PrimeNG icons CSS
@@ -52,16 +53,34 @@ const buttonStyle = {
     marginTop: '12px'
 };
 
-function RegisterUser() {
-    const [form, setForm] = useState({ email: '', userId: '', password: '' });
+const RegisterUser = () => {
+    const apiBaseUrl = process.env.REACT_APP_API_URL;
+    const [formData, setformData] = useState({ email: '', userId: '', password: '' });
+    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setformData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(JSON.stringify(form));
+        try {
+            const payload = {
+                email: formData.email,
+                userId: formData.userId,
+                password: formData.password
+            };
+            const response = await axios.post(`${apiBaseUrl}/api/registeruser/register`, payload);
+
+            const data = response.data;
+
+            setMessage(data.message || "Registration successful! Please check your email to verify your account.");
+        } catch (error) {
+            const data = error.response ? error.response.data : {};
+            setMessage(data.message || "Error validating email. Please try again later.");
+        }
+
+        //alert(JSON.stringify(formData));
     };
 
     return (
@@ -83,7 +102,7 @@ function RegisterUser() {
                 color: 'white',
                 boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)'
             }}>
-                <form  onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <h2 style={{ color: '#fff', letterSpacing: '2px', marginBottom: '32px' }}>
                         CREATE ACCOUNT
                     </h2>
@@ -97,7 +116,7 @@ function RegisterUser() {
                             placeholder="Enter your email"
                             name="email"
                             required
-                            value={form.email}
+                            value={formData.email}
                             onChange={handleChange}
                             autoComplete="email"
                         />
@@ -112,7 +131,7 @@ function RegisterUser() {
                             placeholder="Choose a user ID"
                             name="userId"
                             required
-                            value={form.userId}
+                            value={formData.userId}
                             onChange={handleChange}
                             autoComplete="username"
                         />
@@ -127,7 +146,7 @@ function RegisterUser() {
                             placeholder="Password"
                             name="password"
                             required
-                            value={form.password}
+                            value={formData.password}
                             onChange={handleChange}
                             autoComplete="new-password"
                         />
@@ -138,6 +157,7 @@ function RegisterUser() {
                     </button>
                 </form>
             </div>
+            <div>{message}</div>
         </div>
     );
 }
