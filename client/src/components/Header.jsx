@@ -3,9 +3,9 @@ import React from 'react';
 const Header = () => (
   <header
     style={{
-      background: 'linear-gradient(90deg, #1e3c72 0%, #2a5298 100%)',
+      background: 'linear-gradient(90deg, #111827 0%, #2a5298 100%)',
       height: '80px',
-      color: 'white',
+      color: '#60A5FA',
       padding: '0 30px',
       display: 'flex',
       alignItems: 'center',
