@@ -37,10 +37,11 @@ const pool = new Pool({
 // Pass pool to travelRequestsRouter
 const travelRequestsRouter = require('./routes/travelRequests')(pool);
 const propertyRequestsRouter = require('./routes/propertyRequests')(pool);
+const registerUserRequestsRouter = require('./routes/registerUserRequests')(pool);
 
 app.use('/api', travelRequestsRouter);
 app.use('/api', propertyRequestsRouter);
-
+app.use('/api', registerUserRequestsRouter);
 
 // 🌐 Serve React static files in production
 if (process.env.NODE_ENV === "production") {
