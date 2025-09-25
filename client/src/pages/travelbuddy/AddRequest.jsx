@@ -1,9 +1,20 @@
 // pages/AddRequest.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import stateCityData from '../../data/stateCityData.json';
 
 const AddRequest = () => {
+  const navigate = useNavigate();
+  const [loggedInEmail] = useState(localStorage.getItem('email'));
+
+  useEffect(() => {
+    // Navigate to login if user is not logged in initially
+    if (!loggedInEmail) {
+      alert('Please login first');
+      navigate('/login');
+    }
+  }, [loggedInEmail, navigate]);
   const [formData, setFormData] = useState({
     fromState: '',
     fromCity: '',
