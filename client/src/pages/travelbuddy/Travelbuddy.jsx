@@ -8,7 +8,7 @@ import AddRequest from './AddRequest';
 import FindBuddy from './FindBuddy';
 import TrabelBuddyDescription from './TravelBuddyDescription';
 
-const Travelbuddy = () => {
+const Travelbuddy = ({toastRef}) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const handleTabChange = (e) => {
@@ -26,7 +26,7 @@ const Travelbuddy = () => {
                     <TrabelBuddyDescription />
                 </TabPanel>
                 <TabPanel header="Add New Request">
-                    <AddRequest/>
+                    <AddRequest toastRef={toastRef}/>
                 </TabPanel>
                 <TabPanel header="Find Buddy">
                     <FindBuddy/>

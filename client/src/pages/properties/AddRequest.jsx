@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // react-router v6 hook
 import 'primereact/resources/themes/saga-blue/theme.css';
@@ -6,14 +6,14 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import '../travelbuddy/Travelbuddy';
 
-const AddRequest = () => {
+const AddRequest = ({ toastRef }) => {
   const navigate = useNavigate();
   const [loggedInEmail] = useState(localStorage.getItem('email'));
 
   useEffect(() => {
     // Navigate to login if user is not logged in initially
     if (!loggedInEmail) {
-      alert('Please login first');
+      toastRef.current.show({ severity: 'info', summary: 'Info', detail: 'Please login first', life: 3000 });
       navigate('/login');
     }
   }, [loggedInEmail, navigate]);

@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import stateCityData from '../../data/stateCityData.json';
 
-const AddRequest = () => {
+const AddRequest = ({ toastRef }) => {
   const navigate = useNavigate();
   const [loggedInEmail] = useState(localStorage.getItem('email'));
 
   useEffect(() => {
     // Navigate to login if user is not logged in initially
     if (!loggedInEmail) {
-      alert('Please login first');
+      toastRef.current.show({ severity: 'info', summary: 'Info', detail: 'Please login first', life: 3000 });
       navigate('/login');
     }
   }, [loggedInEmail, navigate]);

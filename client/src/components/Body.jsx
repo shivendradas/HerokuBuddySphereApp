@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useNavigate, useLocation, Routes, Route } from 'react-router-dom';
 import { PanelMenu } from 'primereact/panelmenu';
 
@@ -13,10 +13,12 @@ import 'primeicons/primeicons.css';
 import Properties from '../pages/properties/Properties';
 import Login from '../pages/login/Login';
 import RegisterUser from '../pages/login/RegisterUser';
+import ToastMessage from './ToastMessage';
 
 const MainBody = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const toastRef = useRef(null);
 
     const getActiveClass = (path) =>
         location.pathname === path
@@ -72,11 +74,12 @@ const MainBody = () => {
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/registeruser" element={<RegisterUser />} />
-                        <Route path="/travelbuddy" element={<TravelBuddy />} />
-                        <Route path="/properties" element={<Properties />} />
+                        <Route path="/travelbuddy" element={<TravelBuddy toastRef={toastRef}/>} />
+                        <Route path="/properties" element={<Properties toastRef={toastRef} />} />
                         <Route path="/matchmaking" element={<MatchMaking />} />
                         <Route path="/findjobs" element={<FindJobs />} />
                     </Routes>
+                    <ToastMessage ref={toastRef} />
                 </div>
             </div>
         </div>

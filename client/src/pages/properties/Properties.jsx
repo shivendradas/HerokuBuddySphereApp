@@ -8,7 +8,7 @@ import PropertiesDescription from './PropertiesDescription';
 import AddRequest from './AddRequest';
 import SearchProperties from './SearchProperties';
 
-const Properties = () => {
+const Properties = ({ toastRef }) => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const handleTabChange = (e) => {
@@ -26,7 +26,7 @@ const Properties = () => {
                     <PropertiesDescription />
                 </TabPanel>
                 <TabPanel header="Add Property Aid">
-                    <AddRequest />
+                    <AddRequest toastRef={toastRef}/>
                 </TabPanel>
                 <TabPanel header="Search Properties">
                     <SearchProperties />
