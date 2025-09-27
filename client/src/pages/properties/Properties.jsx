@@ -7,9 +7,11 @@ import '../travelbuddy/Travelbuddy'; // Import custom CSS
 import PropertiesDescription from './PropertiesDescription';
 import AddRequest from './AddRequest';
 import SearchProperties from './SearchProperties';
+import MyAd from './MyAd';
 
 const Properties = ({ toastRef }) => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [loggedInEmail] = useState(localStorage.getItem('email'));
 
     const handleTabChange = (e) => {
         setActiveIndex(e.index);
@@ -31,6 +33,10 @@ const Properties = ({ toastRef }) => {
                 <TabPanel header="Search Properties">
                     <SearchProperties />
                 </TabPanel>
+                {loggedInEmail && <TabPanel header="My Ad">
+                    <MyAd toastRef={toastRef}/>
+                </TabPanel>} 
+                
             </TabView>}
         </div>
     );

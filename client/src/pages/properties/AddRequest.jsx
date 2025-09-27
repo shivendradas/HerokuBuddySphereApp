@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // react-router v6 hook
 import 'primereact/resources/themes/saga-blue/theme.css';
@@ -72,6 +72,7 @@ const AddRequest = ({ toastRef }) => {
         areaSqft: formData.areaSqft,
         contactName: formData.contactName,
         contactPhone: formData.contactPhone,
+        email: loggedInEmail || '',
         imageData: base64Images[0] || null
       };
 
@@ -79,10 +80,10 @@ const AddRequest = ({ toastRef }) => {
         headers: { 'Content-Type': 'application/json' }
       });
 
-      alert('Property aid submitted!');
+      toastRef.current.show({ severity: 'success', summary: 'Success', detail: 'Property aid submitted!', life: 3000 });
     } catch (error) {
       console.error('Submit error:', error);
-      alert('Submission failed.');
+      toastRef.current.show({ severity: 'error', summary: 'Error', detail: 'Submission failed.', life: 3000 });
     }
   };
 
