@@ -80,12 +80,31 @@ const SearchProperties = () => {
                                         key={prop.id}
                                         src={bufferObjectToBase64Image(prop.images, 'image/jpeg')}
                                         alt={`Property ${prop.name}`}
-                                        style={{ width: '100px', height: '70px', objectFit: 'cover', border: '2px solid #3b82f6' }}
+                                        style={{ width: '100px', height: '70px', objectFit: 'cover', border: '2px solid #3b82f6', cursor: 'pointer' }}
                                         className="rounded-md"
+                                        onClick={() => {
+                                            const imageSrc = bufferObjectToBase64Image(prop.images, 'image/jpeg');
+                                            const imgHtml = `
+            <html>
+              <head><title>Image Preview</title></head>
+              <body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background-color:#000;">
+                <img src="${imageSrc}" style="max-width:95vw; max-height:95vh;" alt="Preview" />
+              </body>
+            </html>
+          `;
+                                            const popup = window.open('', '_blank', 'width=800,height=600');
+                                            if (popup) {
+                                                popup.document.write(imgHtml);
+                                                popup.document.close();
+                                            } else {
+                                                alert('Popup blocked. Please allow popups for this site.');
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>
                         }
+
                     </li>
                 ))}
             </ul>

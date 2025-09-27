@@ -6,7 +6,7 @@ const transactionTypeMap = {
     Lease: 'lease',
 };
 
-const MyAd = ({toastRef}) => {
+const MyAd = ({ toastRef }) => {
     const [loggedInEmail] = useState(localStorage.getItem('email'));
     const [properties, setProperties] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -61,7 +61,7 @@ const MyAd = ({toastRef}) => {
             if (res.ok) {
                 const updatedProperty = await res.json();
                 setProperties(properties.map(prop => prop.id === propertyId ? updatedProperty : prop));
-            }   else {
+            } else {
                 toastRef.current.show({ severity: 'warning', summary: 'Info', detail: 'Failed to update the property status.', life: 3000 });
             }
         } catch (err) {
@@ -99,18 +99,37 @@ const MyAd = ({toastRef}) => {
                                         key={prop.id}
                                         src={bufferObjectToBase64Image(prop.images, 'image/jpeg')}
                                         alt={`Property ${prop.name}`}
-                                        style={{ width: '100px', height: '70px', objectFit: 'cover', border: '2px solid #3b82f6' }}
+                                        style={{ width: '100px', height: '70px', objectFit: 'cover', border: '2px solid #3b82f6', cursor: 'pointer' }}
                                         className="rounded-md"
+                                        onClick={() => {
+                                            const imageSrc = bufferObjectToBase64Image(prop.images, 'image/jpeg');
+                                            const imgHtml = `
+            <html>
+              <head><title>Image Preview</title></head>
+              <body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh; background-color:#000;">
+                <img src="${imageSrc}" style="max-width:95vw; max-height:95vh;" alt="Preview" />
+              </body>
+            </html>
+          `;
+                                            const popup = window.open('', '_blank', 'width=800,height=600');
+                                            if (popup) {
+                                                popup.document.write(imgHtml);
+                                                popup.document.close();
+                                            } else {
+                                                alert('Popup blocked. Please allow popups for this site.');
+                                            }
+                                        }}
                                     />
                                 </div>
                             </div>
                         }
+
                         <div className="mt-3 flex gap-3">
                             <button
                                 className={`px-4 py-2 rounded ${prop.isActive ? 'bg-green-600' : 'bg-red-600'} text-white`}
                                 onClick={() => handleActiveDeactive(prop.id)}
                             >
-                                {prop.isactive ? 'Deactive' : 'Active'}                                
+                                {prop.isactive ? 'Deactive' : 'Active'}
                             </button>
                             <button
                                 className="px-4 py-2 rounded bg-red-700 hover:bg-red-800 text-white"
