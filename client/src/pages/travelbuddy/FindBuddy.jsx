@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import stateCityData from '../../data/stateCityData.json'; // Adjust the path as necessary
 
-const FindBuddy = () => {
+const FindBuddy = ({ toastRef }) => {
   const [criteria, setCriteria] = useState({
     fromState: '',
     fromCity: '',
@@ -30,7 +30,7 @@ const FindBuddy = () => {
     const actualFromCity = criteria.fromCity === 'Other' ? customFromCity : criteria.fromCity;
     const actualToState = criteria.toState === 'Other' ? customToState : criteria.toState;
     const actualToCity = criteria.toCity === 'Other' ? customToCity : criteria.toCity;
-  
+
     // Create the full payload
     let payload = {
       from: actualFromState && actualFromCity ? `${actualFromState}+${actualFromCity}` : '',
@@ -39,24 +39,28 @@ const FindBuddy = () => {
       toDate: criteria.toDate,
       userType: criteria.userType
     };
-  
+
     // Remove empty fields so only filled ones are sent
     Object.keys(payload).forEach(key => {
       if (!payload[key]) {
         delete payload[key];
       }
     });
-  
+
     try {
       const apiBaseUrl = process.env.REACT_APP_API_URL;
       const res = await axios.get(`${apiBaseUrl}/api/findBuddy`, { params: payload });
+      if (res.data.length === 0) {
+        toastRef.current.show({ severity: 'warning', summary: 'Warning', detail: 'No results found. Please modify your search criteria.', life: 3000 });
+      }
       setResults(res.data);
     } catch (error) {
       console.error("Search failed:", error);
-      alert("Error fetching results. Please try again.");
+      toastRef.current.show({ severity: 'error', summary: 'Error', detail: 'Error fetching results. Please try again.', life: 3000 });
+
     }
   };
-  
+
 
   return (
     <div className="max-w-4xl mx-auto">

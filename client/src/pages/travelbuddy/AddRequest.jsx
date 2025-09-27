@@ -25,7 +25,8 @@ const AddRequest = ({ toastRef }) => {
     mobile: '',
     email: '',
     userType: '',
-    description: ''
+    description: '',
+    isActive: true,
   });
 
   const [customFromState, setCustomFromState] = useState('');

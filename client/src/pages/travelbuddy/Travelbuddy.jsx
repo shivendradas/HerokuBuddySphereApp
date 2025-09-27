@@ -7,9 +7,11 @@ import './Travelbuddy.css'; // Import custom CSS
 import AddRequest from './AddRequest';
 import FindBuddy from './FindBuddy';
 import TrabelBuddyDescription from './TravelBuddyDescription';
+import MyRequest from './MyRequest';
 
 const Travelbuddy = ({toastRef}) => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [loggedInEmail] = useState(localStorage.getItem('email'));
 
     const handleTabChange = (e) => {
         setActiveIndex(e.index);
@@ -29,8 +31,11 @@ const Travelbuddy = ({toastRef}) => {
                     <AddRequest toastRef={toastRef}/>
                 </TabPanel>
                 <TabPanel header="Find Buddy">
-                    <FindBuddy/>
+                    <FindBuddy toastRef={toastRef}/>
                 </TabPanel>
+                {loggedInEmail && <TabPanel header="My Request">
+                    <MyRequest toastRef={toastRef}/>
+                </TabPanel>} 
             </TabView>
             {/* <div className="active-tab-info">
                 <p>Active Tab: {activeIndex === 0 ? 'Add Buddy' : 'Find Buddy'}</p>
