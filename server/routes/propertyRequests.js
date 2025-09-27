@@ -118,7 +118,6 @@ module.exports = (pool) => {
       }
 
       query += ' ORDER BY created_at DESC';
-      console.log(query);
       const result = await pool.query(query, values);
       res.json(result.rows);
     } catch (err) {
