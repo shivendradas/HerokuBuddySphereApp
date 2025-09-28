@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-const transactionTypeMap = {
-    Buy: 'sell',
-    Rent: 'rent',
-    Lease: 'lease',
-};
-
 const MyAd = ({ toastRef }) => {
     const [loggedInEmail] = useState(localStorage.getItem('email'));
     const [properties, setProperties] = useState([]);
@@ -72,11 +66,14 @@ const MyAd = ({ toastRef }) => {
 
     return (
         <div className="max-w-2xl mx-auto p-6 bg-gray-900 shadow-lg rounded-lg">
-            <h2 className="text-2xl font-semibold text-center mb-6 text-blue-400">My Ad</h2>
-
+            {loading && (
+                <img
+                    src="/progress.gif"
+                    alt="Travel Buddy"
+                />
+            )}
             <ul>
-                {properties.map(prop => (
-                    console.log(prop),
+                {properties.length > 0 ? (properties.map(prop => (
                     <li
                         key={prop.id}
                         className="bg-gray-800 rounded-lg p-4 mb-5 shadow border border-blue-700"
@@ -139,7 +136,12 @@ const MyAd = ({ toastRef }) => {
                             </button>
                         </div>
                     </li>
-                ))}
+                ))
+                ) : (
+                    <li className="text-center text-gray-500 py-6">
+                        No record found.
+                    </li>
+                )}
             </ul>
         </div>
     );

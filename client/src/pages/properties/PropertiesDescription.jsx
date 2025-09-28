@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';   // import Helmet
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -6,6 +7,7 @@ import '../travelbuddy/Travelbuddy'; // Add scroll style here
 
 const PropertiesDescription = () => {
   return (
+
     <div
       className="travelbuddy-scroll-container"
       style={{
@@ -16,7 +18,10 @@ const PropertiesDescription = () => {
         width: '100%',
         position: 'relative'
       }}
-    >
+    ><Helmet>
+        <title>Free Properties Portal ad - Buy, Sell & Rent Properties</title>
+        <meta name="description" content="Your one-stop destination for buying, selling, and renting properties on free. Find your dream home or commercial space here." />
+      </Helmet>
       <section
         className="max-w-4xl mx-auto p-6 shadow-md rounded"
         style={{
@@ -41,7 +46,7 @@ const PropertiesDescription = () => {
       </section>
       {/* Optional: Add a semi-transparent overlay for better text readability */}
       <div
-        style={{ 
+        style={{
           position: 'absolute',
           top: 0,
           left: 0,
