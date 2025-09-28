@@ -76,7 +76,7 @@ const MainBody = () => {
                         <Route path="/registeruser" element={<RegisterUser />} />
                         <Route path="/travelbuddy" element={<TravelBuddy toastRef={toastRef}/>} />
                         <Route path="/properties" element={<Properties toastRef={toastRef} />} />
-                        <Route path="/matchmaking" element={<MatchMaking />} />
+                        <Route path="/matchmaking" element={<MatchMaking toastRef={toastRef}/>} />
                         <Route path="/findjobs" element={<FindJobs />} />
                     </Routes>
                     <ToastMessage ref={toastRef} />
