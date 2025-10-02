@@ -60,7 +60,7 @@ const MainBody = () => {
 
 
     return (
-        <div className="flex-grow bg-gradient-to-tr from-[#f0f8ff] via-[#d6eaff] to-[#f7fbff] p-4">
+        <div className="flex-grow bg-gradient-to-tr from-[#f0f8ff] via-[#d6eaff] to-[#f7fbff] p-4" style={{ height: '80vh' }}>
             <div className="flex h-full gap-6">
                 {/* Left panel */}
                 <div className="w-1/5 bg-white shadow-md rounded-xl p-4 border border-gray-200">

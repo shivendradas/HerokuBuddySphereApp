@@ -98,6 +98,7 @@ const MyProfile = ({ toastRef }) => {
                             partnerLocation: data.partner_location || '',
                             partnerEducation: data.partner_education || '',
                             partnerOccupation: data.partner_occupation || '',
+                            isActive: data.is_active || '',
                             profileImage: null
                         });
                         if (data.profile_image) {
@@ -174,10 +175,15 @@ const MyProfile = ({ toastRef }) => {
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
             <h2 className="text-2xl font-semibold text-center mb-6 text-blue-700">Update Profile</h2>
             {loading && <p>Loading...</p>}
-            <form onSubmit={handleProfileSubmit} className="p-fluid matchmaking-form">
+            {console.log('Profile State:', profile)}
+            <form onSubmit={handleProfileSubmit} className="p-fluid matchmaking-form">                
                 <div className="p-field">
                     <label htmlFor="name">Name</label>
                     <input id="name" name="name" type="text" value={profile.name} onChange={handleProfileChange} required className="w-full px-3 py-2 border rounded-md shadow-sm" />
+                </div>
+                <div className="p-field">
+                    <label htmlFor="isActive">Active Status:</label>
+                    <input id="isActive" name="isActive" type="text" value={profile.isActive} onChange={handleProfileChange} required className="w-full px-3 py-2 border rounded-md shadow-sm" />
                 </div>
                 <div className="p-field">
                     <label htmlFor="dateOfBirth">Date of Birth</label>

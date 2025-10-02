@@ -32,7 +32,7 @@ const MatchMaking = ({toastRef}) => {
                     <SearchProfile />
                 </TabPanel>
                 <TabPanel header="My Profiles">
-                    <MyProfile />
+                    <MyProfile toastRef={toastRef}/>
                 </TabPanel>
             </TabView>
         </div>
