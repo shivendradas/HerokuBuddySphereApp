@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { useNavigate, useLocation, Routes, Route } from 'react-router-dom';
 import { PanelMenu } from 'primereact/panelmenu';
 
 import TravelBuddy from '../pages/travelbuddy/Travelbuddy';
 import MatchMaking from '../pages/matchmaking/MatchMaking';
-import FindJobs from '../pages/jobs/FindJobs';
 import Home from '../pages/Home';
 
 import 'primereact/resources/themes/saga-blue/theme.css';
@@ -14,6 +13,7 @@ import Properties from '../pages/properties/Properties';
 import Login from '../pages/login/Login';
 import RegisterUser from '../pages/login/RegisterUser';
 import ToastMessage from './ToastMessage';
+import BrowseAd from '../pages/browseAd/BrowseAd';
 
 const MainBody = () => {
     const navigate = useNavigate();
@@ -51,10 +51,10 @@ const MainBody = () => {
             className: getActiveClass('/matchmaking'),
         },
         {
-            label: 'Find Jobs',
-            icon: location.pathname === '/findjobs' ? 'pi pi-briefcase text-green-600' : 'pi pi-briefcase',
-            command: () => navigate('/findjobs'),
-            className: getActiveClass('/findjobs'),
+            label: 'Shop Used & New',
+            icon: location.pathname === '/browseads' ? 'pi pi-briefcase text-green-600' : 'pi pi-briefcase',
+            command: () => navigate('/browseads'),
+            className: getActiveClass('/browseads'),
         },
     ];
 
@@ -77,7 +77,7 @@ const MainBody = () => {
                         <Route path="/travelbuddy" element={<TravelBuddy toastRef={toastRef}/>} />
                         <Route path="/properties" element={<Properties toastRef={toastRef} />} />
                         <Route path="/matchmaking" element={<MatchMaking toastRef={toastRef}/>} />
-                        <Route path="/findjobs" element={<FindJobs />} />
+                        <Route path="/browseads" element={<BrowseAd toastRef={toastRef}/>} />
                     </Routes>
                     <ToastMessage ref={toastRef} />
                 </div>

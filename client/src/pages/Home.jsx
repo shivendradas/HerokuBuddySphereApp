@@ -47,7 +47,7 @@ const Home = () => {
         >
           <div
             style={{
-              backgroundImage: 'url(/job.png)',
+              backgroundImage: 'url(/utilityAds.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               width: '400px',
@@ -57,12 +57,12 @@ const Home = () => {
               display: 'flex',
               alignItems: 'flex-end',
               padding: '1rem',
-              color: '#fff',
+              color: '#60A5FA',
               fontWeight: 'bold',
               fontSize: '1.2rem'
             }}
           >
-            Explore Job Opportunities
+            Sell or Buy used or new products
           </div>
           <div
             style={{
@@ -76,7 +76,7 @@ const Home = () => {
               display: 'flex',
               alignItems: 'flex-end',
               padding: '1rem',
-              color: '#fff',
+              color: '#60A5FA',
               fontWeight: 'bold',
               fontSize: '1.2rem'
             }}
@@ -95,7 +95,7 @@ const Home = () => {
               display: 'flex',
               alignItems: 'flex-end',
               padding: '1rem',
-              color: '#fff',
+              color: '#60A5FA',
               fontWeight: 'bold',
               fontSize: '1.2rem'
             }}
@@ -114,7 +114,7 @@ const Home = () => {
               display: 'flex',
               alignItems: 'flex-end',
               padding: '1rem',
-              color: '#fff',
+              color: '#60A5FA',
               fontWeight: 'bold',
               fontSize: '1.2rem'
             }}
