@@ -184,6 +184,93 @@ module.exports = (pool) => {
       res.status(500).json({ error: 'Failed to fetch profiles' });
     }
   });
+  // Update profile by email
+  router.put('/matchmaking/updateProfile/:email', async (req, res) => {
+    const { email } = req.params;
+    const {
+      name,
+      dateOfBirth,
+      age,
+      gender,
+      maritalStatus,
+      height,
+      weight,
+      religion,
+      caste,
+      motherTongue,
+      nationality,
+      phone,
+      education,
+      occupation,
+      annualIncome,
+      fatherOccupation,
+      motherOccupation,
+      siblings,
+      familyType,
+      foodHabits,
+      smokingHabit,
+      drinkingHabit,
+      languagesKnown,
+      aboutYourself,
+      partnerAgeRange,
+      partnerHeightRange,
+      partnerReligion,
+      partnerCaste,
+      partnerLocation,
+      partnerEducation,
+      partnerOccupation,
+      profileImageData,
+      isActive,
+    } = req.body;
+
+    try {
+      let imageBuffer = null;
+      if (profileImageData) {
+        imageBuffer = Buffer.from(profileImageData, 'base64');
+      }
+
+      // Build SQL update query with parameter placeholders
+      // Include profile_image only if imageBuffer is provided
+      let query = `
+      UPDATE matchmaking_profiles
+      SET name=$1, date_of_birth=$2, age=$3, gender=$4, marital_status=$5, height=$6, weight=$7,
+          religion=$8, caste=$9, mother_tongue=$10, nationality=$11, phone=$12, education=$13,
+          occupation=$14, annual_income=$15, father_occupation=$16, mother_occupation=$17,
+          siblings=$18, family_type=$19, food_habits=$20, smoking_habit=$21, drinking_habit=$22,
+          languages_known=$23, about_yourself=$24, partner_age_range=$25, partner_height_range=$26,
+          partner_religion=$27, partner_caste=$28, partner_location=$29, partner_education=$30,
+          partner_occupation=$31, is_active=$32
+    `;
+
+      const params = [
+        name, dateOfBirth, age, gender, maritalStatus, height, weight, religion, caste, motherTongue,
+        nationality, phone, education, occupation, annualIncome, fatherOccupation, motherOccupation,
+        siblings, familyType, foodHabits, smokingHabit, drinkingHabit, languagesKnown, aboutYourself,
+        partnerAgeRange, partnerHeightRange, partnerReligion, partnerCaste, partnerLocation, partnerEducation,
+        partnerOccupation, isActive
+      ];
+
+      if (imageBuffer) {
+        query += `, profile_image=$32 `;
+        params.push(imageBuffer);
+      }
+
+      query += ` WHERE email=$${params.length + 1} RETURNING *;`;
+      params.push(email);
+
+      const result = await pool.query(query, params);
+
+      if (result.rows.length === 0) {
+        return res.status(404).json({ message: 'Profile not found to update' });
+      }
+
+      res.json({ message: 'Profile updated successfully', profile: result.rows[0] });
+    } catch (err) {
+      console.error('Error updating profile:', err);
+      res.status(500).json({ error: 'Failed to update profile' });
+    }
+  });
+
 
   // Fetch profiles by email
   router.get('/matchmaking/myprofile', async (req, res) => {
