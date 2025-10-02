@@ -1,13 +1,12 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';   // import Helmet
+import { Helmet } from 'react-helmet';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import '../travelbuddy/Travelbuddy'; // Add scroll style here
+import '../travelbuddy/Travelbuddy';
 
 const PropertiesDescription = () => {
   return (
-
     <div
       className="travelbuddy-scroll-container"
       style={{
@@ -18,33 +17,38 @@ const PropertiesDescription = () => {
         width: '100%',
         position: 'relative'
       }}
-    ><Helmet>
-        <title>Free Properties Portal ad - Buy, Sell & Rent Properties</title>
-        <meta name="description" content="Your one-stop destination for buying, selling, and renting properties on free. Find your dream home or commercial space here." />
+    >
+      <Helmet>
+        <title>Best Free Properties Portal - Buy, Sell & Rent with Ease</title>
+        <meta
+          name="description"
+          content="Discover the best platform for buying, selling, and renting properties for free. Find verified listings, connect with trusted agents, and get expert support."
+        />
       </Helmet>
       <section
         className="max-w-4xl mx-auto p-6 shadow-md rounded"
         style={{
           position: 'relative',
           zIndex: 2,
-          background: 'rgba(255,255,255,0.4)' // Transparent background
+          background: 'rgba(255,255,255,0.5)',
+          backdropFilter: 'blur(10px)' // Added blur for modern effect
         }}
       >
-        <h1 className="text-3xl font-bold mb-4">Properties Portal</h1>
+        <h1 className="text-3xl font-bold mb-4">Your Ultimate Properties Portal</h1>
         <p className="mb-4">
-          Welcome to our Properties Portal, your one-stop destination for buying, selling, and renting properties. Whether you are looking for your dream home, a commercial space, or an investment opportunity, our platform makes it easy to find the right property.
+          Welcome to the most trusted and user-friendly platform for all your property needs.
+          Whether you're buying, selling, or renting, we make the process simple, transparent, and free of charge.
         </p>
-        <ul className="list-disc pl-6 mb-4">
-          <li>Advertise your own property for sale, rent, or lease.</li>
-          <li>Search and filter properties by location, price, type, and more.</li>
-          <li>Connect directly with property owners and agents.</li>
-          <li>Explore featured listings and new opportunities.</li>
+        <ul className="list-disc pl-6 mb-4 space-y-2">
+          <li>Post your property listings easily without any fees or commissions.</li>
+          <li>Access a wide range of verified properties with advanced filtering options.</li>
+          <li>Directly communicate with verified owners and professional agents for faster deals.</li>
+          <li>Stay updated with featured properties, latest market trends, and expert advice.</li>
         </ul>
         <p>
-          Start your property journey today by browsing listings or posting your own property to reach potential buyers and renters!
+          Join thousands of satisfied users who trust us to find their perfect property. Start exploring or list your property today and experience hassle-free real estate transactions!
         </p>
       </section>
-      {/* Optional: Add a semi-transparent overlay for better text readability */}
       <div
         style={{
           position: 'absolute',
@@ -52,7 +56,7 @@ const PropertiesDescription = () => {
           left: 0,
           width: '100%',
           height: '100%',
-          background: 'rgba(255,255,255,0.5)',
+          background: 'rgba(255,255,255,0.4)',
           zIndex: 1
         }}
       />

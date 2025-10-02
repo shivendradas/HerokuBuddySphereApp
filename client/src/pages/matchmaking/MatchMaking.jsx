@@ -10,6 +10,7 @@ import AddProfile from './AddProfile';
 import './MatchMaking.css'; // Import custom CSS
 import SearchProfile from './SearchProfile';
 import MyProfile from './MyProfile';
+import MatchMakingDescription from './MatchMakingDescription';
 
 const MatchMaking = ({toastRef}) => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -25,6 +26,9 @@ const MatchMaking = ({toastRef}) => {
                 onTabChange={handleTabChange}
                 className="custom-tabview"
             >
+                <TabPanel header="Description">
+                    <MatchMakingDescription />
+                </TabPanel>
                 <TabPanel header="Add Profile">
                     <AddProfile  toastRef={toastRef}/>
                 </TabPanel>
