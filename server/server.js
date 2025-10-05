@@ -13,14 +13,23 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' })); // or higher if needed
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
+const allowedOrigins = [
+  'https://buddysphere-1lbl.onrender.com',
+  'https://communityaidhub.com'
+];
 // Allow your frontend origin
 app.use(cors({
-  origin: 'https://buddysphere-1lbl.onrender.com', // <-- frontend domain
-  //origin: '*',
+  origin: function (origin, callback) {
+    // allow requests with no origin, like mobile apps or curl
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true, // only if you're using cookies or authentication
+  credentials: true
 }));
-
 // PostgreSQL Connection
 /* const pool = new Pool({
   user: process.env.DB_USER,
