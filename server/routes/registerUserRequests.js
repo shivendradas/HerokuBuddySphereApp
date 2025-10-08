@@ -28,6 +28,8 @@ module.exports = (pool) => {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     },
+    logger: true,
+    debug: true
   });
 
   // Register new user and send verification email
