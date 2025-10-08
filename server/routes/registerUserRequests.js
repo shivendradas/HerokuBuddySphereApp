@@ -22,9 +22,8 @@ module.exports = (pool) => {
   // Setup Nodemailer transporter
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    requireTLS: true,
+    port: 465, // or 587
+    secure: true, // true for 465, false for 587
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
