@@ -22,6 +22,7 @@ const allowedOrigins = [
 app.use(cors({
   origin: function (origin, callback) {
     console.log('CORS origin:', origin);
+    // allow requests with no origin, like mobile apps or curl
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -31,9 +32,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
-
-// Allow preflight requests
-app.options('*', cors());
 // PostgreSQL Connection
 /* const pool = new Pool({
   user: process.env.DB_USER,
