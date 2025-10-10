@@ -21,15 +21,14 @@ module.exports = (pool) => {
 
   // Setup Nodemailer transporter
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    /* host: 'smtp.gmail.com',
     port: 587, //465 or 587
-    secure: false, // true for 465, false for 587
+    secure: false, // true for 465, false for 587 */
+    service: 'gmail',
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
-    },
-    logger: true,
-    debug: true
+    }
   });
 
   // Register new user and send verification email
