@@ -17,7 +17,7 @@ const allowedOrigins = [
   'https://buddysphere-1lbl.onrender.com',
   'https://communityaidhub.com',
   'https://www.communityaidhub.com',
-  'http://localhost:3000'
+  'https://api.communityaidhub.com/'
 ];
 // Allow your frontend origin
 app.use(cors({
