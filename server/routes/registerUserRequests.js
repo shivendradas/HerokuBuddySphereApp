@@ -24,7 +24,7 @@ module.exports = (pool) => {
     CLIENT_SECRET,
     REDIRECT_URI
   );
-
+console.log("Refresh Token", REFRESH_TOKEN);
   oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
   // Setup Nodemailer transporteCLIENT_SECRET r
@@ -47,7 +47,9 @@ module.exports = (pool) => {
     const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '1d' });
     const url = `${CLIENT_URL}/api/registeruser/verify-email?token=${token}`;
     const accessToken = await oAuth2Client.getAccessToken();
-
+console.log("Access Token", accessToken.token);
+console.log("Email User", EMAIL_USER);
+console.log("Client ID", CLIENT_ID);
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -57,7 +59,9 @@ module.exports = (pool) => {
         clientSecret: CLIENT_SECRET,
         refreshToken: REFRESH_TOKEN,
         accessToken: accessToken.token
-      }
+      },
+      logger: true,
+      debug: true
     });
 
     const mailOptions = {
