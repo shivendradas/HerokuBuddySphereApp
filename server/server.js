@@ -16,7 +16,8 @@ app.use(express.urlencoded({ limit: '10mb', extended: true }));
 const allowedOrigins = [
   'https://buddysphere-1lbl.onrender.com',
   'https://communityaidhub.com',
-  'https://www.communityaidhub.com'
+  'https://www.communityaidhub.com',
+  'http://localhost:3000'
 ];
 // Allow your frontend origin
 app.use(cors({
