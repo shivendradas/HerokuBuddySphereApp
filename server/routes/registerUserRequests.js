@@ -3,6 +3,7 @@ const express = require('express');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
 const router = express.Router();
 
 module.exports = (pool) => {
@@ -16,20 +17,24 @@ module.exports = (pool) => {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
   `);
+  const { EMAIL_USER, EMAIL_PASS, JWT_SECRET, CLIENT_URL, CLIENT_ID,
+    CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } = process.env;
+  const oAuth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URI
+  );
 
-  const { EMAIL_USER, EMAIL_PASS, JWT_SECRET, CLIENT_URL } = process.env;
+  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-  // Setup Nodemailer transporter
-  const transporter = nodemailer.createTransport({
-    /* host: 'smtp.gmail.com',
-    port: 587, //465 or 587
-    secure: false, // true for 465, false for 587 */
+  // Setup Nodemailer transporteCLIENT_SECRET r
+  /* const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     }
-  });
+  }); */
 
   // Register new user and send verification email
   router.post('/registeruser/register', async (req, res) => {
@@ -41,6 +46,19 @@ module.exports = (pool) => {
 
     const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '1d' });
     const url = `${CLIENT_URL}/api/registeruser/verify-email?token=${token}`;
+    const accessToken = await oAuth2Client.getAccessToken();
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: EMAIL_USER,
+        clientId: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        refreshToken: REFRESH_TOKEN,
+        accessToken: accessToken.token
+      }
+    });
 
     const mailOptions = {
       from: EMAIL_USER,
