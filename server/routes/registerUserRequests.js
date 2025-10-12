@@ -73,7 +73,7 @@ console.log("Client ID", CLIENT_ID);
              <a href="${url}">${url}</a>`,
     }; */
     try {
-      await transporter.sendMail(mailOptions);
+      //await transporter.sendMail(mailOptions);
       await pool.query(
         `INSERT INTO users 
          (email, user_id, password, email_verified)
