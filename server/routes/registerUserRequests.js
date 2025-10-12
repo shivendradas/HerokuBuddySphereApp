@@ -19,22 +19,22 @@ module.exports = (pool) => {
   `);
   const { EMAIL_USER, EMAIL_PASS, JWT_SECRET, CLIENT_URL, CLIENT_ID,
     CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN } = process.env;
- /*  const oAuth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    REDIRECT_URI
-  );
-console.log("Refresh Token", REFRESH_TOKEN);
-  oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN }); */
+  /*  const oAuth2Client = new google.auth.OAuth2(
+     CLIENT_ID,
+     CLIENT_SECRET,
+     REDIRECT_URI
+   );
+ console.log("Refresh Token", REFRESH_TOKEN);
+   oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN }); */
 
   // Setup Nodemailer transporteCLIENT_SECRET r
-  const transporter = nodemailer.createTransport({
+  /* const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: EMAIL_USER,
       pass: EMAIL_PASS,
     }
-  });
+  }); */
 
   // Register new user and send verification email
   router.post('/registeruser/register', async (req, res) => {
@@ -65,22 +65,24 @@ console.log("Client ID", CLIENT_ID);
       debug: true
     }); */
 
-    const mailOptions = {
+    /* const mailOptions = {
       from: EMAIL_USER,
       to: email,
       subject: 'Verify your email',
       html: `<p>Please click this link to verify your email and complete registration:</p>
              <a href="${url}">${url}</a>`,
-    };
+    }; */
     try {
       await transporter.sendMail(mailOptions);
       await pool.query(
         `INSERT INTO users 
          (email, user_id, password, email_verified)
          VALUES ($1,$2,$3,$4)`,
-        [email, userId, password, false]
+        [email, userId, password, true]
       );
-      res.json({ message: 'Verification email sent. Please click on verify link and then login.' });
+      // TODO: email verification do later
+      //res.json({ message: 'Verification email sent. Please click on verify link and then login.' });
+      res.json({ message: 'Registration successful. You can now log in.' });
     } catch (error) {
       console.error('Error sending email:', error);
       res.status(500).json({ message: 'Failed to send verification email' });
