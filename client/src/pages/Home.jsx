@@ -6,35 +6,39 @@ const Home = () => {
     <div>
       <Helmet>
         {/* 1. Title and Meta Description */}
-        <title>Find Travel Buddies | BuddySphere</title>
-        <meta name="description" content="Connect with travel companions, explore job opportunities, and find matchmaking services across India. All on one free platform – BuddySphere." />
-        <meta name="keywords" content="free, travel buddy, India travel, find partner, travel app, job search, matchmaking" />
+        <title>BuddySphere | Travel Buddies, Properties, Matchmaking, Shop Used & New</title>
+        <meta 
+          name="description" 
+          content="BuddySphere connects you to travel buddies, property deals (buy/sell/rent/lease), matchmaking, and a platform to buy & sell used or new products. Find companions, homes, jobs, and meaningful connections—all in one free, easy-to-use platform." 
+        />
+        <meta 
+          name="keywords" 
+          content="travel buddy, India, companions, property buy sell rent, matchmaking, used products, new products, shop online, travel partners, home rentals, business spaces, relationship services, free platform" 
+        />
 
         {/* 2. Open Graph & Twitter Meta Tags */}
-        <meta property="og:title" content="Find Travel Buddies | BuddySphere" />
-        <meta property="og:description" content="Join BuddySphere to connect with travel companions and discover jobs or matchmaking options across India." />
-        <meta property="og:image" content="https://buddysphere-1lbl.onrender.com/header.png" />
-        <meta property="og:url" content="https://buddysphere-1lbl.onrender.com/" />
+        <meta property="og:title" content="BuddySphere | Travel Buddies, Properties, Matchmaking, Shop Used & New" />
+        <meta property="og:description" content="Meet travel buddies, buy/sell/rent properties, explore matchmaking, and shop used or new products with BuddySphere's all-in-one free platform." />
+        <meta property="og:image" content="https://communityaidhub.com/header.png" />
+        <meta property="og:url" content="https://communityaidhub.com/" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Find Travel Buddies | BuddySphere" />
-        <meta name="twitter:description" content="free, Find travel partners, jobs, and matchmaking services across India on one free platform." />
-        <meta name="twitter:image" content="https://buddysphere-1lbl.onrender.com/header.png" />
+        <meta name="twitter:title" content="BuddySphere | Travel Buddies, Properties, Matchmaking, Shop Used & New" />
+        <meta name="twitter:description" content="Find travel partners, property deals, matchmaking, and a vibrant market for used & new goods—free across India." />
+        <meta name="twitter:image" content="https://communityaidhub.com/header.png" />
 
         {/* 3. Canonical URL */}
-        <link rel="canonical" href="https://buddysphere-1lbl.onrender.com/" />
+        <link rel="canonical" href="https://communityaidhub.com/" />
 
-        
         {/* Optional Favicon and Theme */}
         <link rel="icon" href="/favicon.ico" />
         <meta name="theme-color" content="#1e90ff" />
       </Helmet>
       <section>
-        <h2><b>Welcome to Our Free Travel Buddy Platform</b></h2>
+        <h2><b>Welcome to BuddySphere</b></h2>
         <p>
-          Discover a completely free platform to connect with travel companions for your journeys across India.
-          In addition to finding travel buddies, you can also explore job opportunities and matchmaking services—all in one place.
+          BuddySphere is your free all-in-one platform to connect with travel companions, discover property deals (buy, sell, rent or lease), find matchmaking options, and shop for used or new products across India. Start new journeys, find your next home or business space, meaningful connections, and great deals—all in one place.
         </p>
         <div
           style={{
@@ -62,7 +66,7 @@ const Home = () => {
               fontSize: '1.2rem'
             }}
           >
-            Sell or Buy used or new products
+            Shop Used or New Products
           </div>
           <div
             style={{
@@ -81,7 +85,7 @@ const Home = () => {
               fontSize: '1.2rem'
             }}
           >
-            Buy, Sell & Rent
+            Buy, Sell, Rent & Lease Properties
           </div>
           <div
             style={{
@@ -123,7 +127,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };
