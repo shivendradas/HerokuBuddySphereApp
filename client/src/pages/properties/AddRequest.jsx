@@ -5,6 +5,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import '../travelbuddy/Travelbuddy';
+import LocationAutocomplete from '../../components/LocationAutoComplete';
 
 const AddRequest = ({ toastRef }) => {
   const navigate = useNavigate();
@@ -43,7 +44,12 @@ const AddRequest = ({ toastRef }) => {
       setFormData({ ...formData, [name]: value });
     }
   };
-
+const handleLocation2Change = (val) => {
+  setFormData((prev) => ({
+    ...prev,
+    location: val
+  }));
+};
   const toBase64 = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -119,8 +125,9 @@ const AddRequest = ({ toastRef }) => {
 
         <label>
           Location:
-          <input name="location" type="text" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" placeholder="City, Area" value={formData.location} onChange={handleChange} />
-        </label>
+          {/* <input name="location" type="text" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" placeholder="City, Area" value={formData.location} onChange={handleChange} /> */}
+
+          <LocationAutocomplete name="location" customStyle="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" value={formData.location} onChange={handleLocation2Change} placeholder="City or state 1" countryCode="IN" />        </label>
 
         <label>
           Price:
