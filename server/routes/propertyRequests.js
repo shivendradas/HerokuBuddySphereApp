@@ -12,6 +12,9 @@ module.exports = (pool) => {
       transaction_type VARCHAR(25),
       description TEXT,
       location VARCHAR(255),
+      address VARCHAR(255),
+      latitude NUMERIC,
+      longitude NUMERIC,
       price NUMERIC,
       bedrooms INT,
       bathrooms INT,
@@ -33,6 +36,9 @@ module.exports = (pool) => {
       transactionType,
       description,
       location,
+      address,
+      latitude,
+      longitude,
       price,
       bedrooms,
       bathrooms,
@@ -51,9 +57,9 @@ module.exports = (pool) => {
 
       await pool.query(
         `INSERT INTO property_requests 
-         (property_type, transaction_type, description, location, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images, email)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`,
-        [propertyType, transactionType, description, location, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer, email]
+         (property_type, transaction_type, description, location, address, latitude, longitude, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images, email)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, $13,$14,$15)`,
+        [propertyType, transactionType, description, location, address, latitude, longitude, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer, email]
       );
       res.status(200).json({ message: 'Property request added successfully' });
     } catch (err) {
@@ -69,6 +75,7 @@ module.exports = (pool) => {
         propertyType,
         transactionType,
         location,
+        address,
         minPrice,
         maxPrice,
         minBedrooms,
@@ -90,6 +97,10 @@ module.exports = (pool) => {
       if (location) {
         conditions.push(`location ILIKE $${idx++}`);
         values.push(`%${location}%`);
+      }
+      if (address) {
+        conditions.push(`address ILIKE $${idx++}`);
+        values.push(`%${address}%`);
       }
       if (minPrice) {
         conditions.push(`price >= $${idx++}`);
