@@ -6,10 +6,12 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import '../travelbuddy/Travelbuddy';
 import LocationAutocomplete from '../../components/LocationAutoComplete';
+import SelectAddress from '../../components/map/SelectAddress';
 
 const AddRequest = ({ toastRef }) => {
   const navigate = useNavigate();
   const [loggedInEmail] = useState(localStorage.getItem('email'));
+  const [address, setAddress] = useState(null);
 
   useEffect(() => {
     // Navigate to login if user is not logged in initially
@@ -25,6 +27,9 @@ const AddRequest = ({ toastRef }) => {
     title: '',
     description: '',
     location: '',
+    address: '',
+    lat: 0.0,
+    lon: 0.0,
     price: '',
     bedrooms: '',
     bathrooms: '',
@@ -44,12 +49,21 @@ const AddRequest = ({ toastRef }) => {
       setFormData({ ...formData, [name]: value });
     }
   };
-const handleLocation2Change = (val) => {
-  setFormData((prev) => ({
-    ...prev,
-    location: val
-  }));
-};
+  const handleLocation2Change = (val) => {
+    setFormData((prev) => ({
+      ...prev,
+      location: val
+    }));
+  };
+  const handleAddressChange = (address) => {
+    setFormData(prev => ({
+      ...prev,
+      address: address ? address.address : '',
+      lat: address ? address.lat : 0.0,
+      lon: address ? address.lon : 0.0
+    }));
+    //alert("Address selected: " + (address ? address.address : 'No address')); 
+  };
   const toBase64 = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -72,6 +86,9 @@ const handleLocation2Change = (val) => {
         transactionType: formData.transactionType,
         description: formData.description,
         location: formData.location,
+        address: formData.address,
+        latitude: formData.lat,
+        longitute: formData.lon,
         price: formData.price,
         bedrooms: formData.bedrooms,
         bathrooms: formData.bathrooms,
@@ -128,7 +145,12 @@ const handleLocation2Change = (val) => {
           {/* <input name="location" type="text" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" placeholder="City, Area" value={formData.location} onChange={handleChange} /> */}
 
           <LocationAutocomplete name="location" customStyle="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" value={formData.location} onChange={handleLocation2Change} placeholder="City or state 1" countryCode="IN" />        </label>
+        <label>
+          Address:
+          <input name="address" type="text" disabled={true} className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" value={formData.address} />
 
+          <SelectAddress customClassName="bg-blue-600 text-white px-4 py-2 rounded mt-4" selectedAddress={address} onAddressChange={handleAddressChange} />
+        </label>
         <label>
           Price:
           <input name="price" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" placeholder="Price" value={formData.price} onChange={handleChange} />
