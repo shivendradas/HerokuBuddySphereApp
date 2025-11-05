@@ -79,6 +79,12 @@ const MyAd = ({ toastRef }) => {
                         className="bg-gray-800 rounded-lg p-4 mb-5 shadow border border-blue-700"
                     >
                         <strong className="text-lg text-blue-300">{prop.name}</strong>
+                        {prop.ad_given_by === 'agent' && (
+                            <>
+                                <div className="text-gray-300">Owner: {prop.owner_name}</div>
+                                <div className="text-gray-300">Owner Contact: {prop.owner_contact}</div>
+                            </>
+                        )}
                         <div className="text-gray-300">Type: {prop.property_type}</div>
                         <div className="text-gray-300">Transaction: {prop.transaction_type}</div>
                         <div className="text-gray-400">Description: {prop.description}</div>

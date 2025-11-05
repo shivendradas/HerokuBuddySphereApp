@@ -22,6 +22,9 @@ const AddRequest = ({ toastRef }) => {
   }, [loggedInEmail, navigate]);
 
   const [formData, setFormData] = React.useState({
+    adGivenBy: '',
+    ownerName: '',
+    ownerContact: '',
     propertyType: '',
     transactionType: '',
     title: '',
@@ -82,6 +85,9 @@ const AddRequest = ({ toastRef }) => {
       }
 
       const payload = {
+        adGivenBy: formData.adGivenBy,
+        ownerName: formData.ownerName,
+        ownerContact: formData.ownerContact,
         propertyType: formData.propertyType,
         transactionType: formData.transactionType,
         description: formData.description,
@@ -112,34 +118,90 @@ const AddRequest = ({ toastRef }) => {
 
   return (
     <div className="max-w-2xl mx-auto p-6 bg-gray-900 shadow-lg rounded-lg">
-      <h2 className="text-2xl font-semibold text-center mb-6 text-blue-400">Add Property Aid</h2>
       <form className="grid grid-cols-1 gap-4" onSubmit={handleSubmit}>
-        {/* form input fields here as before */}
-        <label>
-          Property Type:
-          <select name="propertyType" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none" value={formData.propertyType} onChange={handleChange}>
-            <option value="">Select</option>
-            <option value="flat">Flat</option>
-            <option value="individual_home">Individual Home</option>
-          </select>
-        </label>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <label className="flex flex-col">
+            <span className="mb-1 text-blue-300">You are:</span>
+            <select
+              name="adGivenBy"
+              className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 focus:outline-none w-full"
+              value={formData.adGivenBy || ''}
+              onChange={handleChange}
+            >
+              <option value="">Select</option>
+              <option value="owner">Owner</option>
+              <option value="agent">Agent</option>
+              <option value="builder">Builder</option>
+            </select>
+          </label>
 
-        <label>
-          Type:
-          <select name="transactionType" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none" value={formData.transactionType} onChange={handleChange}>
-            <option value="">Select</option>
-            <option value="buy">Buy</option>
-            <option value="sell">Sell</option>
-            <option value="rent">Rent</option>
-            <option value="lease">Lease</option>
-          </select>
-        </label>
+          <label className="flex flex-col">
+            <span className="mb-1 text-blue-300">Property Type:</span>
+            <select
+              name="propertyType"
+              className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 focus:outline-none w-full"
+              value={formData.propertyType}
+              onChange={handleChange}
+            >
+              <option value="">Select</option>
+              <option value="flat">Flat</option>
+              <option value="individual_home">Individual Home</option>
+            </select>
+          </label>
 
+          <label className="flex flex-col">
+            <span className="mb-1 text-blue-300">Type:</span>
+            <select
+              name="transactionType"
+              className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 focus:outline-none w-full"
+              value={formData.transactionType}
+              onChange={handleChange}
+            >
+              <option value="">Select</option>
+              <option value="buy">Buy</option>
+              <option value="sell">Sell</option>
+              <option value="rent">Rent</option>
+              <option value="lease">Lease</option>
+            </select>
+          </label>
+        </div>
+        {formData.adGivenBy === 'agent' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <label className="flex flex-col">
+              <span className="mb-1 text-blue-300">Owner Name:</span>
+              <input
+                name="ownerName"
+                type="text"
+                className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 focus:outline-none w-full"
+                value={formData.ownerName || ''}
+                onChange={handleChange}
+                placeholder="Owner's full name"
+              />
+            </label>
+
+            <label className="flex flex-col">
+              <span className="mb-1 text-blue-300">Owner Contact Number:</span>
+              <input
+                name="ownerContact"
+                type="tel"
+                className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 focus:outline-none w-full"
+                value={formData.ownerContact || ''}
+                onChange={handleChange}
+                placeholder="Owner contact number"
+              />
+            </label>
+          </div>
+        )}
         <label>
           Description:
-          <textarea name="description" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" placeholder="Property Description" value={formData.description} onChange={handleChange} />
+          <textarea
+            name="description"
+            className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full"
+            placeholder="Property Description"
+            value={formData.description}
+            onChange={handleChange}
+          />
         </label>
-
         <label>
           Location:
           {/* <input name="location" type="text" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" placeholder="City, Area" value={formData.location} onChange={handleChange} /> */}
@@ -156,20 +218,22 @@ const AddRequest = ({ toastRef }) => {
           <input name="price" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-full" placeholder="Price" value={formData.price} onChange={handleChange} />
         </label>
 
-        <label>
-          Bedrooms:
-          <input name="bedrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-24" min="0" value={formData.bedrooms} onChange={handleChange} />
-        </label>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+          <label className="flex flex-col">
+            <span className="mb-1 text-blue-300">Bedrooms:</span>
+            <input name="bedrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.bedrooms} onChange={handleChange} />
+          </label>
 
-        <label>
-          Bathrooms:
-          <input name="bathrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-24" min="0" value={formData.bathrooms} onChange={handleChange} />
-        </label>
+          <label className="flex flex-col">
+            <span className="mb-1 text-blue-300">Bathrooms:</span>
+            <input name="bathrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.bathrooms} onChange={handleChange} />
+          </label>
 
-        <label>
-          Area (sq ft):
-          <input name="areaSqft" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-4 focus:outline-none w-24" min="0" value={formData.areaSqft} onChange={handleChange} />
-        </label>
+          <label className="flex flex-col">
+            <span className="mb-1 text-blue-300">Area (sq ft):</span>
+            <input name="areaSqft" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.areaSqft} onChange={handleChange} />
+          </label>
+        </div>
 
         <label>
           Contact Name:

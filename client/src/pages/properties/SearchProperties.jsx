@@ -64,7 +64,6 @@ const SearchProperties = () => {
                     >
                         <strong className="text-lg text-blue-300">{prop.name}</strong>
                         <div className="text-gray-300">Type: {prop.property_type}</div>
-                        <div className="text-gray-300">Transaction: {prop.transaction_type}</div>
                         <div className="text-gray-400">Description: {prop.description}</div>
                         <div className="text-gray-300">Location: {prop.location}</div>
                         <div className="text-blue-400">Price: ₹{prop.price}</div>
@@ -72,6 +71,12 @@ const SearchProperties = () => {
                         <div className="text-gray-300">Bathrooms: {prop.bathrooms}</div>
                         <div className="text-gray-300">Area: {prop.area_sqft} sqft</div>
                         <div className="text-gray-300">Contact: {prop.contact_name} ({prop.contact_phone})</div>
+                        <div className="text-gray-300">
+                            Posted on:{' '}
+                            {prop.created_at
+                                ? new Date(prop.created_at).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' })
+                                : 'N/A'}
+                        </div>
                         {prop.images &&
                             <div>
                                 <span className="text-blue-400">Images:</span>
