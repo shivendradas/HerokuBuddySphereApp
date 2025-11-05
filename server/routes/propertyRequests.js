@@ -7,7 +7,10 @@ module.exports = (pool) => {
   // Create Table if not exists
   pool.query(`
     CREATE TABLE IF NOT EXISTS property_requests (
-      id SERIAL PRIMARY KEY,      
+      id SERIAL PRIMARY KEY,     
+      ad_given_by VARCHAR(50),
+      owner_name VARCHAR(100),
+      owner_contact VARCHAR(20), 
       property_type VARCHAR(50),
       transaction_type VARCHAR(25),
       description TEXT,
@@ -32,6 +35,9 @@ module.exports = (pool) => {
   router.post('/properties/addPropertyRequest', async (req, res) => {
 
     const {
+      adGivenBy,
+      ownerName,
+      ownerContact,
       propertyType,
       transactionType,
       description,
@@ -57,9 +63,9 @@ module.exports = (pool) => {
 
       await pool.query(
         `INSERT INTO property_requests 
-         (property_type, transaction_type, description, location, address, latitude, longitude, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images, email)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, $13,$14,$15)`,
-        [propertyType, transactionType, description, location, address, latitude, longitude, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer, email]
+         (ad_given_by, owner_name, owner_contact, property_type, transaction_type, description, location, address, latitude, longitude, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images, email)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, $13,$14,$15,$16, $17,$18)`,
+        [adGivenBy, ownerName, ownerContact, propertyType, transactionType, description, location, address, latitude, longitude, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer, email]
       );
       res.status(200).json({ message: 'Property request added successfully' });
     } catch (err) {
