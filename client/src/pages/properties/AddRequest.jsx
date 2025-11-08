@@ -224,15 +224,20 @@ const AddRequest = ({ toastRef }) => {
         </label>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
-          <label className="flex flex-col">
-            <span className="mb-1 text-blue-300">Bedrooms:</span>
-            <input name="bedrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.bedrooms} onChange={handleChange} />
-          </label>
+          {/* Hide bedrooms and bathrooms when propertyType is 'plot' or 'farmhouse' */}
+          {formData.propertyType !== 'plot' && formData.propertyType !== 'farmhouse' && (
+            <label className="flex flex-col">
+              <span className="mb-1 text-blue-300">Bedrooms:</span>
+              <input name="bedrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.bedrooms} onChange={handleChange} />
+            </label>
+          )}
 
-          <label className="flex flex-col">
-            <span className="mb-1 text-blue-300">Bathrooms:</span>
-            <input name="bathrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.bathrooms} onChange={handleChange} />
-          </label>
+          {formData.propertyType !== 'plot' && formData.propertyType !== 'farmhouse' && (
+            <label className="flex flex-col">
+              <span className="mb-1 text-blue-300">Bathrooms:</span>
+              <input name="bathrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.bathrooms} onChange={handleChange} />
+            </label>
+          )}
 
           <label className="flex flex-col">
             <span className="mb-1 text-blue-300">Area (sq ft):</span>
