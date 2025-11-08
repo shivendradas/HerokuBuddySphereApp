@@ -144,8 +144,14 @@ const AddRequest = ({ toastRef }) => {
               onChange={handleChange}
             >
               <option value="">Select</option>
-              <option value="flat">Flat</option>
+              <option value="flat">Flat/Appartment</option>
               <option value="individual_home">Individual Home</option>
+              <option value="villa">Villa</option>
+              <option value="builderfloor">Builder Floor</option>
+              <option value="plot">Plot</option>
+              <option value="studioapartment">Studio Apartment</option>
+              <option value="penthouse">Penthouse</option>
+              <option value="farmhouse">Farm House</option>
             </select>
           </label>
 
@@ -158,7 +164,6 @@ const AddRequest = ({ toastRef }) => {
               onChange={handleChange}
             >
               <option value="">Select</option>
-              <option value="buy">Buy</option>
               <option value="sell">Sell</option>
               <option value="rent">Rent</option>
               <option value="lease">Lease</option>
