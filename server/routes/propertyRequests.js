@@ -10,7 +10,8 @@ module.exports = (pool) => {
       id SERIAL PRIMARY KEY,     
       ad_given_by VARCHAR(50),
       owner_name VARCHAR(100),
-      owner_contact VARCHAR(20), 
+      owner_contact VARCHAR(20),
+      property_category VARCHAR(50),
       property_type VARCHAR(50),
       transaction_type VARCHAR(25),
       description TEXT,
@@ -38,6 +39,7 @@ module.exports = (pool) => {
       adGivenBy,
       ownerName,
       ownerContact,
+      propertyCategory,
       propertyType,
       transactionType,
       description,
@@ -63,9 +65,9 @@ module.exports = (pool) => {
 
       await pool.query(
         `INSERT INTO property_requests 
-         (ad_given_by, owner_name, owner_contact, property_type, transaction_type, description, location, address, latitude, longitude, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images, email)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, $13,$14,$15,$16, $17,$18)`,
-        [adGivenBy, ownerName, ownerContact, propertyType, transactionType, description, location, address, latitude, longitude, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer, email]
+         (ad_given_by, owner_name, owner_contact, property_category, property_type, transaction_type, description, location, address, latitude, longitude, price, bedrooms, bathrooms, area_sqft, contact_name, contact_phone, images, email)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12, $13,$14,$15,$16, $17,$18,$19)`,
+        [adGivenBy, ownerName, ownerContact, propertyCategory, propertyType, transactionType, description, location, address, latitude, longitude, price, bedrooms, bathrooms, areaSqft, contactName, contactPhone, imageBuffer, email]
       );
       res.status(200).json({ message: 'Property request added successfully' });
     } catch (err) {
@@ -92,6 +94,10 @@ module.exports = (pool) => {
       let values = [];
       let idx = 1;
 
+      if (propertyCategory) {
+        conditions.push(`property_category = $${idx++}`);
+        values.push(propertyCategory);
+      }
       if (propertyType) {
         conditions.push(`property_type = $${idx++}`);
         values.push(propertyType);
