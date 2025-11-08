@@ -25,6 +25,7 @@ const AddRequest = ({ toastRef }) => {
     adGivenBy: '',
     ownerName: '',
     ownerContact: '',
+    propertyCategory: 'residential',
     propertyType: '',
     transactionType: '',
     title: '',
@@ -88,13 +89,14 @@ const AddRequest = ({ toastRef }) => {
         adGivenBy: formData.adGivenBy,
         ownerName: formData.ownerName,
         ownerContact: formData.ownerContact,
+        propertyCategory: formData.propertyCategory,
         propertyType: formData.propertyType,
         transactionType: formData.transactionType,
         description: formData.description,
         location: formData.location,
         address: formData.address,
         latitude: formData.lat,
-        longitute: formData.lon,
+        longitude: formData.lon,
         price: formData.price,
         bedrooms: formData.bedrooms,
         bathrooms: formData.bathrooms,
@@ -120,6 +122,35 @@ const AddRequest = ({ toastRef }) => {
     <div className="max-w-2xl mx-auto p-6 bg-gray-900 shadow-lg rounded-lg">
       <form className="grid grid-cols-1 gap-4" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <label className="flex flex-col md:flex-row md:items-center">
+            <span className="mb-1 md:mb-0 md:mr-4 text-blue-300">Usage:</span>
+            <div className="flex items-center space-x-6">
+              <label className="flex items-center space-x-2 text-blue-300">
+                <input
+                  type="radio"
+                  name="propertyCategory"
+                  value="residential"
+                  checked={(formData.propertyCategory ?? 'residential') === 'residential'}
+                  onChange={handleChange}
+                  className="form-radio h-4 w-4 text-blue-600 bg-gray-800 border-blue-500"
+                />
+                <span>Residential</span>
+              </label>
+
+              <label className="flex items-center space-x-2 text-blue-300">
+                <input
+                  type="radio"
+                  name="propertyCategory"
+                  value="commercial"
+                  checked={formData.propertyCategory === 'commercial'}
+                  onChange={handleChange}
+                  className="form-radio h-4 w-4 text-blue-600 bg-gray-800 border-blue-500"
+                />
+                <span>Commercial</span>
+              </label>
+            </div>
+          </label>
+          <div className="col-span-full" />
           <label className="flex flex-col">
             <span className="mb-1 text-blue-300">You are:</span>
             <select
