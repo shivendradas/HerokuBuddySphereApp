@@ -37,6 +37,8 @@ const AddRequest = ({ toastRef }) => {
     price: '',
     bedrooms: '',
     bathrooms: '',
+    hall: '',
+    kitchen: '',
     areaSqft: '',
     contactName: '',
     contactPhone: '',
@@ -100,6 +102,8 @@ const AddRequest = ({ toastRef }) => {
         price: formData.price,
         bedrooms: formData.bedrooms,
         bathrooms: formData.bathrooms,
+        hall: formData.hall,
+        kitchen: formData.kitchen,
         areaSqft: formData.areaSqft,
         contactName: formData.contactName,
         contactPhone: formData.contactPhone,
@@ -255,7 +259,7 @@ const AddRequest = ({ toastRef }) => {
         </label>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
-          {/* Hide bedrooms and bathrooms when propertyType is 'plot' or 'farmhouse' */}
+          {/* Hide bedrooms, bathrooms, hall and kitchen when propertyType is 'plot' or 'farmhouse' */}
           {formData.propertyType !== 'plot' && formData.propertyType !== 'farmhouse' && (
             <label className="flex flex-col">
               <span className="mb-1 text-blue-300">Bedrooms:</span>
@@ -267,6 +271,20 @@ const AddRequest = ({ toastRef }) => {
             <label className="flex flex-col">
               <span className="mb-1 text-blue-300">Bathrooms:</span>
               <input name="bathrooms" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.bathrooms} onChange={handleChange} />
+            </label>
+          )}
+
+          {formData.propertyType !== 'plot' && formData.propertyType !== 'farmhouse' && (
+            <label className="flex flex-col">
+              <span className="mb-1 text-blue-300">Hall:</span>
+              <input name="hall" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.hall || ''} onChange={handleChange} />
+            </label>
+          )}
+
+          {formData.propertyType !== 'plot' && formData.propertyType !== 'farmhouse' && (
+            <label className="flex flex-col">
+              <span className="mb-1 text-blue-300">Kitchen:</span>
+              <input name="kitchen" type="number" className="bg-gray-800 text-blue-300 border border-blue-500 rounded px-3 py-2 mb-0 focus:outline-none w-full" min="0" value={formData.kitchen || ''} onChange={handleChange} />
             </label>
           )}
 
