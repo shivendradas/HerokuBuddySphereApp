@@ -18,6 +18,13 @@ const Properties = ({ toastRef }) => {
         setActiveIndex(e.index);
     };
 
+    const headerTemplate = (icon, title) => (
+        <div className="flex align-items-center">
+            <i className={`${icon} mr-2`}></i>
+            <span>{title}</span>
+        </div>
+    );
+
     return (
         <div className="Properties">
             <Helmet>
@@ -29,16 +36,16 @@ const Properties = ({ toastRef }) => {
                 activeIndex={activeIndex} 
                 onTabChange={handleTabChange}
             >
-                <TabPanel header="Description">
+                <TabPanel header={headerTemplate('pi pi-info-circle', 'Description')}>
                     <PropertiesDescription />
                 </TabPanel>
-                <TabPanel header="Add Property Aid">
+                <TabPanel header={headerTemplate('pi pi-plus-circle', 'Add Property Aid')}>
                     <AddRequest toastRef={toastRef}/>
                 </TabPanel>
-                <TabPanel header="Search Properties">
+                <TabPanel header={headerTemplate('pi pi-search', 'Search Properties')}>
                     <SearchProperties />
                 </TabPanel>
-                {loggedInEmail && <TabPanel header="My Ad">
+                {loggedInEmail && <TabPanel header={headerTemplate('pi pi-user', 'My Ad')}>
                     <MyAd toastRef={toastRef}/>
                 </TabPanel>} 
                 

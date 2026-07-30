@@ -20,6 +20,13 @@ const MatchMaking = ({toastRef}) => {
         setActiveIndex(e.index);
     };
 
+    const headerTemplate = (icon, title) => (
+        <div className="flex align-items-center">
+            <i className={`${icon} mr-2`}></i>
+            <span>{title}</span>
+        </div>
+    );
+
     return (
         <div className="travelbuddy">
             <Helmet>
@@ -31,16 +38,16 @@ const MatchMaking = ({toastRef}) => {
                 onTabChange={handleTabChange}
                 className="custom-tabview"
             >
-                <TabPanel header="Description">
+                <TabPanel header={headerTemplate('pi pi-info-circle', 'Description')}>
                     <MatchMakingDescription />
                 </TabPanel>
-                <TabPanel header="Add Profile">
+                <TabPanel header={headerTemplate('pi pi-user-plus', 'Add Profile')}>
                     <AddProfile  toastRef={toastRef}/>
                 </TabPanel>
-                <TabPanel header="Search Profiles">
+                <TabPanel header={headerTemplate('pi pi-search', 'Search Profiles')}>
                     <SearchProfile />
                 </TabPanel>
-                <TabPanel header="My Profiles">
+                <TabPanel header={headerTemplate('pi pi-user', 'My Profiles')}>
                     <MyProfile toastRef={toastRef}/>
                 </TabPanel>
             </TabView>

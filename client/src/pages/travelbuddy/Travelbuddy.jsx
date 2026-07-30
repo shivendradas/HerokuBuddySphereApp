@@ -18,6 +18,13 @@ const Travelbuddy = ({toastRef}) => {
         setActiveIndex(e.index);
     };
 
+    const headerTemplate = (icon, title) => (
+        <div className="flex align-items-center">
+            <i className={`${icon} mr-2`}></i>
+            <span>{title}</span>
+        </div>
+    );
+
     return (
         <div className="travelbuddy">
             <Helmet>
@@ -29,16 +36,16 @@ const Travelbuddy = ({toastRef}) => {
                 activeIndex={activeIndex} 
                 onTabChange={handleTabChange}
             >
-                <TabPanel header="Description">
+                <TabPanel header={headerTemplate('pi pi-info-circle', 'Description')}>
                     <TrabelBuddyDescription />
                 </TabPanel>
-                <TabPanel header="Add New Request">
+                <TabPanel header={headerTemplate('pi pi-plus-circle', 'Add New Request')}>
                     <AddRequest toastRef={toastRef}/>
                 </TabPanel>
-                <TabPanel header="Find Buddy">
+                <TabPanel header={headerTemplate('pi pi-users', 'Find Buddy')}>
                     <FindBuddy toastRef={toastRef}/>
                 </TabPanel>
-                {loggedInEmail && <TabPanel header="My Request">
+                {loggedInEmail && <TabPanel header={headerTemplate('pi pi-user', 'My Request')}>
                     <MyRequest toastRef={toastRef}/>
                 </TabPanel>} 
             </TabView>
