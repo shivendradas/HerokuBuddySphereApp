@@ -19,44 +19,51 @@ const MainBody = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const toastRef = useRef(null);
-
-    const getActiveClass = (path) =>
-        location.pathname === path
-            ? 'bg-blue-100 text-blue-700 font-semibold rounded-lg'
-            : '';
-
-    const menuItems = [
+    const menuItemsConfig = [
         {
             label: 'Home',
-            icon: location.pathname === '/' ? 'pi pi-home text-blue-700' : 'pi pi-home',
-            command: () => navigate('/'),
-            className: getActiveClass('/'),
+            icon: 'pi pi-home',
+            path: '/',
         },
         {
             label: 'Find Travel Buddy',
-            icon: location.pathname === '/travelbuddy' ? 'pi pi-users text-blue-700' : 'pi pi-users',
-            command: () => navigate('/travelbuddy'),
-            className: getActiveClass('/travelbuddy'),
+            icon: 'pi pi-users',
+            path: '/travelbuddy',
         },
         {
             label: 'Properties',
-            icon: location.pathname === '/properties' ? 'pi pi-building text-purple-600' : 'pi pi-building',
-            command: () => navigate('/properties'),
-            className: getActiveClass('/properties'),
+            icon: 'pi pi-building',
+            path: '/properties',
         },
         {
             label: 'Match Making',
-            icon: location.pathname === '/matchmaking' ? 'pi pi-heart-fill text-pink-500' : 'pi pi-heart',
-            command: () => navigate('/matchmaking'),
-            className: getActiveClass('/matchmaking'),
+            icon: 'pi pi-heart',
+            activeIcon: 'pi pi-heart-fill',
+            path: '/matchmaking',
         },
         {
             label: 'Shop Used & New',
-            icon: location.pathname === '/browseads' ? 'pi pi-briefcase text-green-600' : 'pi pi-briefcase',
-            command: () => navigate('/browseads'),
-            className: getActiveClass('/browseads'),
+            icon: 'pi pi-briefcase',
+            path: '/browseads',
         },
     ];
+
+    const menuItems = menuItemsConfig.map((item) => {
+        const isActive = location.pathname === item.path;
+        return {
+            label: item.label,
+            icon: `${(isActive && item.activeIcon) ? item.activeIcon : item.icon}`,
+            command: () => navigate(item.path),
+            className: `rounded-lg transition-all duration-300 ease-in-out ${
+                isActive
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'text-gray-700 hover:bg-blue-50 hover:text-blue-700'
+            }`,
+            style: isActive ? {
+                boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
+              } : {},
+        };
+    });
 
 
     return (
