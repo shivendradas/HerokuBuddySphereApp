@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { TabView, TabPanel } from 'primereact/tabview';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -19,6 +20,10 @@ const BrowseAd = ({ toastRef }) => {
 
     return (
         <div className="Properties">
+            <Helmet>
+                <title>Shop Used & New Products | Online Marketplace | BuddySphere</title>
+                <meta name="description" content="Discover deals on a wide range of new and used products. Buy and sell electronics, furniture, vehicles, and more in our online marketplace." />
+            </Helmet>
             {<TabView 
                 className="custom-tabview" 
                 activeIndex={activeIndex} 

@@ -54,10 +54,10 @@ const MainBody = () => {
             label: item.label,
             icon: `${(isActive && item.activeIcon) ? item.activeIcon : item.icon}`,
             command: () => navigate(item.path),
-            className: `rounded-lg transition-all duration-300 ease-in-out ${
+            className: `rounded-lg transition-all duration-300 ease-in-out text-base font-medium ${
                 isActive
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'text-gray-700 hover:bg-blue-50 hover:text-blue-700'
+                    ? 'bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg'
+                    : 'text-blue-900 hover:bg-blue-100 hover:text-blue-700'
             }`,
             style: isActive ? {
                 boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
@@ -67,16 +67,16 @@ const MainBody = () => {
 
 
     return (
-        <div className="flex-grow bg-gradient-to-tr from-[#f0f8ff] via-[#d6eaff] to-[#f7fbff] p-4" style={{ height: '80vh' }}>
+        <div className="flex-grow bg-slate-100 p-4" style={{ height: '80vh' }}>
             <div className="flex h-full gap-6">
                 {/* Left panel */}
-                <div className="w-1/5 bg-white shadow-md rounded-xl p-4 border border-gray-200">
+                <div className="w-1/5 bg-white shadow-xl rounded-xl p-4 border border-slate-200">
                     <h2 className="text-xl font-semibold text-blue-800 mb-4">Navigation</h2>
                     <PanelMenu model={menuItems} className="w-full" />
                 </div>
 
                 {/* Right panel */}
-                <div className="w-4/5 bg-white shadow-md rounded-xl p-6 border border-gray-200 overflow-auto max-h-[calc(100vh-19vh)]">
+                <div className="w-4/5 bg-white shadow-xl rounded-xl p-6 border border-slate-200 overflow-auto max-h-[calc(100vh-19vh)]">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />

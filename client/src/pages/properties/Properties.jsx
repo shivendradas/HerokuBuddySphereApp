@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { TabView, TabPanel } from 'primereact/tabview';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -19,6 +20,10 @@ const Properties = ({ toastRef }) => {
 
     return (
         <div className="Properties">
+            <Helmet>
+                <title>Buy, Sell & Rent Properties | Free Property Listings | BuddySphere</title>
+                <meta name="description" content="Search for residential and commercial properties. Post free listings to buy, sell, or rent homes, apartments, and business spaces on BuddySphere." />
+            </Helmet>
             {<TabView 
                 className="custom-tabview" 
                 activeIndex={activeIndex} 

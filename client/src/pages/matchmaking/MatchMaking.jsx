@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -21,6 +22,10 @@ const MatchMaking = ({toastRef}) => {
 
     return (
         <div className="travelbuddy">
+            <Helmet>
+                <title>Matrimonial & Matchmaking Services | Find Your Partner | BuddySphere</title>
+                <meta name="description" content="Explore profiles on BuddySphere's matchmaking service to find a life partner. Safe, secure, and easy to use platform for finding meaningful connections." />
+            </Helmet>
             <TabView
                 activeIndex={activeIndex}
                 onTabChange={handleTabChange}
