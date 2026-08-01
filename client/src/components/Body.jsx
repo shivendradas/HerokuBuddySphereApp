@@ -57,10 +57,10 @@ const MainBody = () => {
             className: `rounded-lg transition-all duration-300 ease-in-out text-base font-medium ${
                 isActive
                     ? 'bg-gradient-to-r from-blue-700 to-blue-500 text-white shadow-lg'
-                    : 'text-blue-900 hover:bg-blue-100 hover:text-blue-700'
+                    : 'text-blue-900 hover:bg-blue-100 hover:text-blue-700' 
             }`,
             style: isActive ? {
-                boxShadow: '0 4px 12px rgba(37, 99, 235, 0.3)',
+                boxShadow: '-8px 4px 12px rgba(96, 10, 142, 0.3)',
               } : {},
         };
     });
