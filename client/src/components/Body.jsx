@@ -70,13 +70,13 @@ const MainBody = () => {
         <div className="flex-grow bg-slate-100 p-4" style={{ height: '80vh' }}>
             <div className="flex h-full gap-6">
                 {/* Left panel */}
-                <div className="w-1/5 bg-white shadow-xl rounded-xl p-4 border border-slate-200">
+                <div className="w-1/5 bg-custom-blue-theme shadow-xl rounded-xl p-4 border border-slate-200">
                     <h2 className="text-xl font-semibold text-blue-800 mb-4">Navigation</h2>
                     <PanelMenu model={menuItems} className="w-full" />
                 </div>
 
                 {/* Right panel */}
-                <div className="w-4/5 bg-white shadow-xl rounded-xl p-6 border border-slate-200 overflow-auto max-h-[calc(100vh-19vh)]">
+                <div className="w-4/5 bg-custom-blue-theme shadow-xl rounded-xl p-6 border border-slate-200 overflow-auto max-h-[calc(100vh-19vh)]">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />

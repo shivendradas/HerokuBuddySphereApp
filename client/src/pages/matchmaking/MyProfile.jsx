@@ -172,7 +172,7 @@ const MyProfile = ({ toastRef }) => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+        <div className="max-w-2xl mx-auto p-6 bg-custom-blue-theme shadow-md rounded-lg">
             <h2 className="text-2xl font-semibold text-center mb-6 text-blue-700">Update Profile</h2>
             {loading && <p>Loading...</p>}
             {console.log('Profile State:', profile)}
