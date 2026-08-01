@@ -108,12 +108,12 @@ const AddItemAd = ({ toastRef }) => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
-            <h2 className="text-2xl font-semibold text-center mb-6 text-blue-700">Post Your Item for Sale</h2>
+        <div className="max-w-2xl mx-auto p-6 bg-gray-900 shadow-lg rounded-lg">
+            <h2 className="text-2xl font-semibold text-center mb-6 text-blue-300">Post Your Item for Sale</h2>
             <form onSubmit={handleSubmit} className="p-fluid classifieds-form">
                 <div className="p-field">
-                    <label htmlFor="category">Category</label>
-                    <select id="category" name="category" value={adDetails.category} onChange={handleInputChange} required className="w-full px-3 py-2 border rounded-md shadow-sm">
+                    <label htmlFor="category" className="text-blue-300">Category</label>
+                    <select id="category" name="category" value={adDetails.category} onChange={handleInputChange} required className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm">
                         <option value="">Select category</option>
                         <option value="Bike">Bike</option>
                         <option value="Television">Television</option>
@@ -124,8 +124,8 @@ const AddItemAd = ({ toastRef }) => {
                     </select>
                 </div>
                 <div className="p-field">
-                    <label htmlFor="condition">Condition</label>
-                    <select id="condition" name="condition" value={adDetails.condition} onChange={handleInputChange} required className="w-full px-3 py-2 border rounded-md shadow-sm">
+                    <label htmlFor="condition" className="text-blue-300">Condition</label>
+                    <select id="condition" name="condition" value={adDetails.condition} onChange={handleInputChange} required className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm">
                         <option value="">Select condition</option>
                         <option value="New">New</option>
                         <option value="Used - Like New">Used - Like New</option>
@@ -134,49 +134,49 @@ const AddItemAd = ({ toastRef }) => {
                     </select>
                 </div>
                 <div className="p-field">
-                    <label htmlFor="title">Ad Title</label>
-                    <input type="text" id="title" name="title" value={adDetails.title} onChange={handleInputChange} required className="w-full px-3 py-2 border rounded-md shadow-sm" placeholder="Short description of the item" />
+                    <label htmlFor="title" className="text-blue-300">Ad Title</label>
+                    <input type="text" id="title" name="title" value={adDetails.title} onChange={handleInputChange} required className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" placeholder="Short description of the item" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="description">Description</label>
-                    <textarea id="description" name="description" value={adDetails.description} onChange={handleInputChange} rows={4} className="w-full px-3 py-2 border rounded-md shadow-sm" placeholder="Detailed description of your item" />
+                    <label htmlFor="description" className="text-blue-300">Description</label>
+                    <textarea id="description" name="description" value={adDetails.description} onChange={handleInputChange} rows={4} className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" placeholder="Detailed description of your item" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="price">Price (in INR)</label>
-                    <input type="number" id="price" name="price" value={adDetails.price} onChange={handleInputChange} min="0" required className="w-full px-3 py-2 border rounded-md shadow-sm" />
+                    <label htmlFor="price" className="text-blue-300">Price (in INR)</label>
+                    <input type="number" id="price" name="price" value={adDetails.price} onChange={handleInputChange} min="0" required className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="brand">Brand</label>
-                    <input type="text" id="brand" name="brand" value={adDetails.brand} onChange={handleInputChange} className="w-full px-3 py-2 border rounded-md shadow-sm" />
+                    <label htmlFor="brand" className="text-blue-300">Brand</label>
+                    <input type="text" id="brand" name="brand" value={adDetails.brand} onChange={handleInputChange} className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="model">Model</label>
-                    <input type="text" id="model" name="model" value={adDetails.model} onChange={handleInputChange} className="w-full px-3 py-2 border rounded-md shadow-sm" />
+                    <label htmlFor="model" className="text-blue-300">Model</label>
+                    <input type="text" id="model" name="model" value={adDetails.model} onChange={handleInputChange} className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="yearOfPurchase">Year of Purchase</label>
-                    <input type="number" id="yearOfPurchase" name="yearOfPurchase" value={adDetails.yearOfPurchase} onChange={handleInputChange} min="1900" max={new Date().getFullYear()} className="w-full px-3 py-2 border rounded-md shadow-sm" />
+                    <label htmlFor="yearOfPurchase" className="text-blue-300">Year of Purchase</label>
+                    <input type="number" id="yearOfPurchase" name="yearOfPurchase" value={adDetails.yearOfPurchase} onChange={handleInputChange} min="1900" max={new Date().getFullYear()} className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="contactEmail">Contact Email</label>
-                    <input type="email" id="contactEmail" name="contactEmail" value={adDetails.contactEmail} onChange={handleInputChange} disabled={true} required className="w-full px-3 py-2 border rounded-md shadow-sm" />
+                    <label htmlFor="contactEmail" className="text-blue-300">Contact Email</label>
+                    <input type="email" id="contactEmail" name="contactEmail" value={adDetails.contactEmail} onChange={handleInputChange} disabled={true} required className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="contactPhone">Contact Phone</label>
-                    <input type="tel" id="contactPhone" name="contactPhone" value={adDetails.contactPhone} onChange={handleInputChange} className="w-full px-3 py-2 border rounded-md shadow-sm" />
+                    <label htmlFor="contactPhone" className="text-blue-300">Contact Phone</label>
+                    <input type="tel" id="contactPhone" name="contactPhone" value={adDetails.contactPhone} onChange={handleInputChange} className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="location">Location</label>
-                    <input type="text" id="location" name="location" value={adDetails.location} onChange={handleInputChange} className="w-full px-3 py-2 border rounded-md shadow-sm" placeholder="City or area" />
+                    <label htmlFor="location" className="text-blue-300">Location</label>
+                    <input type="text" id="location" name="location" value={adDetails.location} onChange={handleInputChange} className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" placeholder="City or area" />
                 </div>
                 <div className="p-field">
-                    <label htmlFor="adImage">Ad Image</label>
-                    <input type="file" id="adImage" name="adImage" accept="image/*" onChange={handleInputChange} className="w-full px-3 py-2 border rounded-md shadow-sm" />
-                    {imageLoading && <div>Loading image...</div>}
+                    <label htmlFor="adImage" className="text-blue-300">Ad Image</label>
+                    <input type="file" id="adImage" name="adImage" accept="image/*" onChange={handleInputChange} className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm" />
+                    {imageLoading && <div className="text-blue-300">Loading image...</div>}
                     {imagePreview && !imageLoading && <img src={imagePreview} alt="Ad Preview" className="mt-2 max-h-48 rounded-md" />}
                 </div>
 
-                <Button type="submit" label="Post Ad" className="p-mt-2" />
+                <Button type="submit" label="Post Ad" className="p-mt-2 bg-blue-600 text-white" />
             </form>
         </div>
     );

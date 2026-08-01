@@ -66,12 +66,12 @@ const AddRequest = ({ toastRef }) => {
 
   const renderSelectOrCustomInput = (label, name, options, value, onChange, customValue, setCustomValue) => (
     <>
-      <label className="block text-sm font-medium text-gray-700">{label}</label>
+      <label className="block text-sm font-medium text-blue-300">{label}</label>
       <select
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
       >
         <option value="">Select {label}</option>
         {options.map(option => (
@@ -83,7 +83,7 @@ const AddRequest = ({ toastRef }) => {
         <input
           type="text"
           placeholder={`Enter custom ${label}`}
-          className="mt-2 w-full px-3 py-2 border rounded-md shadow-sm"
+          className="mt-2 w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm"
           value={customValue}
           onChange={e => setCustomValue(e.target.value)}
         />
@@ -92,8 +92,8 @@ const AddRequest = ({ toastRef }) => {
   );
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-semibold text-center mb-6 text-blue-700">Add Travel Request</h2>
+    <div className="max-w-2xl mx-auto p-6 bg-gray-900 shadow-lg rounded-lg">
+      <h2 className="text-2xl font-semibold text-center mb-6 text-blue-300">Add Travel Request</h2>
       <form onSubmit={handleSubmit} className="space-y-5">
 
         {renderSelectOrCustomInput('From State', 'fromState', Object.keys(stateCityData), formData.fromState, handleChange, customFromState, setCustomFromState)}
@@ -105,60 +105,60 @@ const AddRequest = ({ toastRef }) => {
         {renderSelectOrCustomInput('To City', 'toCity', stateCityData[formData.toState] || [], formData.toCity, handleChange, customToCity, setCustomToCity)}
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Travel Date & Time</label>
+          <label className="block text-sm font-medium text-blue-300">Travel Date & Time</label>
           <input
             type="datetime-local"
             name="dateTime"
             value={formData.dateTime}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md shadow-sm"
+            className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <label className="block text-sm font-medium text-blue-300">Name</label>
             <input
               type="text"
               name="name"
               placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md shadow-sm"
+              className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Mobile Number</label>
+            <label className="block text-sm font-medium text-blue-300">Mobile Number</label>
             <input
               type="text"
               name="mobile"
               placeholder="10-digit mobile"
               value={formData.mobile}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded-md shadow-sm"
+              className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Email ID</label>
+          <label className="block text-sm font-medium text-blue-300">Email ID</label>
           <input
             type="email"
             name="email"
             placeholder="you@example.com"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md shadow-sm"
+            className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">User Type</label>
+          <label className="block text-sm font-medium text-blue-300">User Type</label>
           <select
             name="userType"
             value={formData.userType}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md shadow-sm"
+            className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm"
           >
             <option value="">Select User Type</option>
             <option value="passenger">Passenger (Looking for a cab)</option>
@@ -167,7 +167,7 @@ const AddRequest = ({ toastRef }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">Short Description</label>
+          <label className="block text-sm font-medium text-blue-300">Short Description</label>
           <textarea
             name="description"
             placeholder="Any additional info (max 100 characters)"
@@ -175,7 +175,7 @@ const AddRequest = ({ toastRef }) => {
             rows={3}
             value={formData.description}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded-md shadow-sm resize-none"
+            className="w-full px-3 py-2 bg-gray-800 text-blue-300 border border-blue-500 rounded-md shadow-sm resize-none"
           ></textarea>
         </div>
 
