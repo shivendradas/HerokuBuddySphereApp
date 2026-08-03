@@ -6,7 +6,7 @@ const Home = () => {
     <div>
       <Helmet>
         {/* 1. Title and Meta Description */}
-        <title>BuddySphere | Travel Buddies, Properties, Matchmaking, Shop Used & New</title>
+        <title>BuddySphere | Travel Buddies, Properties, Matchmaking, Marketplace</title>
         <meta 
           name="description" 
           content="BuddySphere connects you to travel buddies, property deals (buy/sell/rent/lease), matchmaking, and a platform to buy & sell used or new products. Find companions, homes, jobs, and meaningful connections—all in one free, easy-to-use platform." 
@@ -17,14 +17,14 @@ const Home = () => {
         />
 
         {/* 2. Open Graph & Twitter Meta Tags */}
-        <meta property="og:title" content="BuddySphere | Travel Buddies, Properties, Matchmaking, Shop Used & New" />
+        <meta property="og:title" content="BuddySphere | Travel Buddies, Properties, Matchmaking, Marketplace" />
         <meta property="og:description" content="Meet travel buddies, buy/sell/rent properties, explore matchmaking, and shop used or new products with BuddySphere's all-in-one free platform." />
         <meta property="og:image" content="https://communityaidhub.com/header.png" />
         <meta property="og:url" content="https://communityaidhub.com/" />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="BuddySphere | Travel Buddies, Properties, Matchmaking, Shop Used & New" />
+        <meta name="twitter:title" content="BuddySphere | Travel Buddies, Properties, Matchmaking, Marketplace" />
         <meta name="twitter:description" content="Find travel partners, property deals, matchmaking, and a vibrant market for used & new goods—free across India." />
         <meta name="twitter:image" content="https://communityaidhub.com/header.png" />
 

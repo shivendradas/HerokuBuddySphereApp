@@ -28,7 +28,7 @@ const BrowseAd = ({ toastRef }) => {
     return (
         <div className="Properties">
             <Helmet>
-                <title>Shop Used & New Products | Online Marketplace | BuddySphere</title>
+                <title>Marketplace Products | Online Marketplace | BuddySphere</title>
                 <meta name="description" content="Discover deals on a wide range of new and used products. Buy and sell electronics, furniture, vehicles, and more in our online marketplace." />
             </Helmet>
             {<TabView 

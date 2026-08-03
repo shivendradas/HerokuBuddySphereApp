@@ -42,7 +42,7 @@ const MainBody = () => {
             path: '/matchmaking',
         },
         {
-            label: 'Shop Used & New',
+            label: 'Marketplace',
             icon: 'pi pi-briefcase',
             path: '/browseads',
         },
