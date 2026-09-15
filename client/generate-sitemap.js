@@ -6,15 +6,38 @@ const path = require('path');
 // Replace with your actual domain
 const BASE_URL = 'https://communityaidhub.com';
 
-// Define your routes here
+// Define your routes with categories for better SEO
 const routes = [
+    // Main pages
     '/',
     '/login',
     '/registeruser',
+    
+    // Travel Buddy section
     '/travelbuddy',
+    '/travelbuddy/domestic',
+    '/travelbuddy/international',
+    
+    // Properties section
     '/properties',
+    '/properties/buy',
+    '/properties/sell',
+    '/properties/rent',
+    '/properties/lease',
+    '/properties/commercial',
+    '/properties/residential',
+    
+    // Matchmaking
     '/matchmaking',
+    '/matchmaking/profiles',
+    
+    // Marketplace/Ads
     '/browseads',
+    '/browseads/electronics',
+    '/browseads/furniture',
+    '/browseads/jobs',
+    '/browseads/services',
+    '/browseads/vehicles',
 ];
 
 // Optional: Set priorities and changefreqs
@@ -23,7 +46,11 @@ const defaultPriority = '0.8';
 
 const sitemapEntries = routes.map((route) => {
     const fullUrl = `${BASE_URL}${route}`;
-    const priority = route === '/' ? '1.0' : defaultPriority;
+    
+    // Higher priority for main feature pages
+    let priority = defaultPriority;
+    if (route === '/') priority = '1.0';
+    else if (['/travelbuddy', '/properties', '/matchmaking', '/browseads'].includes(route)) priority = '0.9';
 
     return `
     <url>
