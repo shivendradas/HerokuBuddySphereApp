@@ -6,38 +6,40 @@ const path = require('path');
 // Replace with your actual domain
 const BASE_URL = 'https://communityaidhub.com';
 
-// Define your routes with categories for better SEO
+// Define your routes that actually exist in the application
+// NOTE: Add subcategory routes here as you implement them in your routing structure
 const routes = [
-    // Main pages
+    // Main pages (these routes exist)
     '/',
     '/login',
     '/registeruser',
-    
-    // Travel Buddy section
     '/travelbuddy',
-    '/travelbuddy/domestic',
-    '/travelbuddy/international',
-    
-    // Properties section
     '/properties',
-    '/properties/buy',
-    '/properties/sell',
-    '/properties/rent',
-    '/properties/lease',
-    '/properties/commercial',
-    '/properties/residential',
-    
-    // Matchmaking
     '/matchmaking',
-    '/matchmaking/profiles',
-    
-    // Marketplace/Ads
     '/browseads',
-    '/browseads/electronics',
-    '/browseads/furniture',
-    '/browseads/jobs',
-    '/browseads/services',
-    '/browseads/vehicles',
+    
+    // FUTURE: Add subcategory routes here as you implement nested routing:
+    // Travel Buddy subcategories
+    // '/travelbuddy/domestic',
+    // '/travelbuddy/international',
+    
+    // Properties subcategories
+    // '/properties/buy',
+    // '/properties/sell',
+    // '/properties/rent',
+    // '/properties/lease',
+    // '/properties/commercial',
+    // '/properties/residential',
+    
+    // Matchmaking subcategories
+    // '/matchmaking/profiles',
+    
+    // Marketplace/Ads subcategories
+    // '/browseads/electronics',
+    // '/browseads/furniture',
+    // '/browseads/jobs',
+    // '/browseads/services',
+    // '/browseads/vehicles',
 ];
 
 // Optional: Set priorities and changefreqs
@@ -76,3 +78,4 @@ fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, sitemap.trim());
 
 console.log(`Sitemap successfully generated at: ${outputPath}`);
+console.log(`Total routes: ${routes.length}`);
