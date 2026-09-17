@@ -47,6 +47,9 @@ const BrowseAdDescription = () => {
         <p>
           Join thousands of users who are successfully buying and selling their products every day. Start posting your free ad now and find the right buyer in no time!
         </p>
+        <div className="p-4 mb-4 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-800 rounded" style={{background: 'rgba(255,255,204,0.5)'}}>
+          <strong>Disclaimer:</strong> This platform is provided only to help users advertise and connect with potential buyers or sellers. Product descriptions, images, prices, condition, ownership, authenticity, availability, and other information are provided by users and are not guaranteed by the platform. Users are responsible for independently verifying product details, seller or buyer identity, and transaction terms before proceeding. Exercise caution when communicating, sharing personal information, making payments, or meeting other users. The platform does not guarantee any transaction and is not responsible for fraud, disputes, losses, or issues arising between buyers and sellers.
+        </div>
       </section>
       <div
         style={{

@@ -48,6 +48,9 @@ const PropertiesDescription = () => {
         <p>
           Join thousands of satisfied users who trust us to find their perfect property. Start exploring or list your property today and experience hassle-free real estate transactions!
         </p>
+         <div className="p-4 mb-4 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-800 rounded" style={{background: 'rgba(255,255,204,0.5)'}}>
+          <strong>Disclaimer:</strong> This platform is only a marketplace for connecting property owners, buyers, sellers, tenants, landlords, and agents. Property information, listings, prices, ownership details, and other content are provided by users or third parties and are not guaranteed to be accurate, complete, or legally valid. Users are responsible for independently verifying all property details, documents, ownership, approvals, and transaction terms and should exercise due diligence before making any payment or entering into an agreement. The platform is not responsible for any loss, dispute, fraud, or transaction between users.
+        </div>
       </section>
       <div
         style={{

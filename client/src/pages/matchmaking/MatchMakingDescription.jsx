@@ -48,6 +48,9 @@ const MatchMakingDescription = () => {
         <p>
           Join thousands who have found their perfect match through our platform. Start your journey today by creating your profile or browsing groom and bride profiles now!
         </p>
+        <div className="p-4 mb-4 border-l-4 border-yellow-500 bg-yellow-50 text-yellow-800 rounded" style={{background: 'rgba(255,255,204,0.5)'}}>
+          <strong>Disclaimer:</strong> This platform is intended to help individuals connect with potential life partners and does not guarantee the accuracy, authenticity, completeness, or verification of any profile, information, or claim provided by users. Users are solely responsible for independently verifying the identity, background, personal details, and intentions of any person they connect with and should exercise appropriate caution before sharing personal information, making commitments, or entering into a relationship. The platform does not guarantee compatibility, successful matchmaking, or the conduct of any user and is not responsible for any loss, dispute, fraud, or relationship arising from interactions between users.
+        </div>
       </section>
       <div
         style={{
